@@ -1,5 +1,13 @@
 #!/usr/bin/env python2.7
 
+#
+#
+# TODO - Write a dynamic inventory that pulls a DNS zone transfer from
+#        our SOA master nameserver, and then uses that as the basis of
+#        everything.
+#
+#
+
 import dns.query
 import dns.zone
 
