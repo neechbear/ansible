@@ -1,0 +1,1 @@
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ansible-(zabbix_host2|zabbix_host_group|command|ufw|synchronize|lineinfile|copy|file|setup|apt|apt_key|apt_repository|service|debconf|pip): Invoked with .*

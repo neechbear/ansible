@@ -1,0 +1,6 @@
+---
+# file: roles/mta/defaults/main.yaml
+# vim:ft=ansible:
+
+smtp_smarthost: 'smtp-relay.gmail.com'
+

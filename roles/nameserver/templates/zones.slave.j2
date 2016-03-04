@@ -1,0 +1,14 @@
+
+{% for zone in nameserver_zones %}
+zone "{{ zone }}" {
+        type slave;
+        file "db.{{ zone }}";
+        masters {
+{% for master in nameserver_acl_masters %}
+                {{ master }};
+{% endfor %}
+        };
+};
+
+{% endfor %}
+

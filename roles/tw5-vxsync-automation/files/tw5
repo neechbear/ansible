@@ -1,0 +1,25 @@
+#!/bin/bash
+
+TW5WIKINAME="tw5.mlt.tfb.net"
+TW5PID="$( pgrep -u $(whoami) -f "^node .* $TW5WIKINAME .*server" )"
+
+if [ -n "$TW5PID" ] ; then
+    >&2 echo "Killing Node.js TiddlyWiki 5 PID $TW5PID ..."
+    kill -2 $TW5PID
+    sleep 2
+fi
+
+cd ~ && screen -d -m -S "tw5-${TW5WIKINAME}" -t "tw5-${TW5WIKINAME}" -U tiddlywiki "$TW5WIKINAME" --server
+sleep 2
+
+TW5PID="$( pgrep -u $(whoami) -f "^node .* $TW5WIKINAME .*server" )"
+if [ -n "$TW5PID" ] ; then
+	>&2 echo -n "New TiddlyWiki 5 runing in PID "
+	sleep 1
+	echo "$TW5PID"
+else
+	>&2 echo "New TiddlyWiki 5 process may have failed"
+	( pgrep -u $(whoami) -f "^node .* $TW5WIKINAME .*server" ) >&2
+	fuser 8080/tcp >&2
+fi
+

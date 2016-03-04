@@ -1,0 +1,65 @@
+---
+# file: roles/motd/tasks/main.yaml
+# vim:ft=ansible:
+
+# ftp://ftp.figlet.org/pub/figlet/fonts/
+# https://oitibs.com/debian-wheezy-dynamic-motd/
+# https://nickcharlton.net/posts/debian-ubuntu-dynamic-motd.html
+
+- apt:
+    state: "latest"
+    name: "{{ item }}"
+  with_items:
+    - figlet
+    - toilet
+    - toilet-fonts
+
+#- copy:
+#    src: "{{ item }}"
+#    dest: "/usr/share/figlet/"
+#    owner: "root"
+#    group: "root"
+#    mode: 0600
+#  with_fileglob: figlet/*.fl*  
+
+- synchronize:
+    src: "figlet/"
+    dest: "/usr/share/figlet/"
+    links: "yes"
+    mode: "push"
+    rsync_path: "sudo rsync"
+  become: no
+
+- file:
+    path: "/etc/update-motd.d"
+    state: "directory"
+    owner: "root"
+    group: "root"
+    mode: 0755
+
+- file:
+    path: "{{ item }}"
+    state: "absent"
+  with_items:
+    - /etc/update-motd.d/00-header
+    - /etc/update-motd.d/05-hostname
+    - /etc/update-motd.d/10-help-text
+    - /etc/update-motd.d/11-vxowner
+    - /etc/update-motd.d/50-landscape-sysinfo
+
+- template:
+    src: "30-banner-hostname.j2"
+    dest: "/etc/update-motd.d/30-banner-hostname"
+    owner: "root"
+    group: "root"
+    mode: 0755
+
+- file:
+    src: "/var/run/motd"
+    dest: "/etc/motd"
+    state: "link"
+    force: "yes"
+    owner: "root"
+    group: "root"
+  when: ansible_distribution == "Debian"
+

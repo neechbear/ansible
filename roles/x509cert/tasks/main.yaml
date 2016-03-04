@@ -1,0 +1,28 @@
+---
+# file: roles/x509cert/tasks/main.yaml
+# vim:ft=ansible:
+
+- command: >
+    openssl req -batch -new -nodes -x509 -utf8 -verbose
+      -newkey "rsa:{{ rsa_key_size|default(4096) }}"
+     -subj '/C={{ cert_country|default("GB") }}/ST={{ cert_state|default("Cambridgeshire") }}/L={{ cert_locality|default("Milton") }}/O={{ cert_org|default("TFB Technology") }}/OU={{ cert_orgunit|default(ansible_domain) }}/CN={{ cert_cn|default(ansible_fqdn) }}'
+      -days "{{ days|default(1180) }}"
+      -keyout "{{ key_filename|default('/etc/ssl/private/' ~ ansible_fqdn ~ '.key')  }}"
+      -keyform "{{ key_format|default('PEM') }}"
+      -out "{{ cert_filename|default('/etc/ssl/certs/' ~ ansible_fqdn ~ '.crt')  }}"
+      -outform "{{ cert_format|default('PEM') }}"
+  args:
+    creates: "{{ cert_filename|default('/etc/ssl/certs/' ~ ansible_fqdn ~ '.crt')  }}"
+
+- file: >
+    owner=root
+    group=root
+    mode=0444
+    path="{{ cert_filename|default('/etc/ssl/certs/' ~ ansible_fqdn ~ '.crt')  }}"
+
+- file: >
+    owner=root
+    group=root
+    mode=0440
+    path="{{ key_filename|default('/etc/ssl/private/' ~ ansible_fqdn ~ '.key')  }}"
+

@@ -1,0 +1,73 @@
+---
+
+# Refer to http://docs.ansible.com/ansible/ufw_module.html
+# for additional information about the Ansible "ufw" module.
+#
+# See TLS-4269 for the initial requirement and rationale
+# behind the implementation of this role.
+#
+# This role can be controlled using the two variable
+# scructures, "ufw_rules", "ufw_policy", and optionally
+# "ufw_logging" which can be used to modify the KERN_LOG
+# log-level mask used by ufw to log packet match messages
+# to syslog.
+#
+# The "ufw_rules" structure allows you add or remove simple
+# iptables firewall rules using the Ubuntu Firewall (ufw).
+#
+# At present, this role, the following attributes are NOT
+# supported in the ufw_rules structure:
+#   to_port
+#   name
+#   interface
+#   insert
+#   route
+#
+# The "ufw_policy" structure allows you to modify the default
+# chain policies for the iptables INPUT, OUTPUT and FORWARD
+# chains in the filter table. Extreme care should be taken
+# when changing this on production services as you may
+# inadvertently firewall yourself out of the host, forcing you
+# to log back in via the OA or physical console.
+#
+# It should also be noted, that without providing at least
+# one valid "ufw_policy" record, the ufw state will not be
+# set, meaning that the rules may not be persisted to disk
+# or enabled at startup. See the state option in the
+# documentation at:
+# http://docs.ansible.com/ansible/ufw_module.html
+
+- name: "Warn if OS family is unsuitable for ufw"
+  debug: msg="System { inventory_hostname }} is running {{ ansible_os_family }} instead of Debian; did you intend to use this role?"
+  when: not ansible_os_family == 'Debian'
+
+- name: "Install ufw"
+  apt: name=ufw
+
+#- name: "Enable ufw"
+#  ufw: state=enabled policy=allow
+
+- name: "Apply ufw rules"
+  ufw:
+    delete: "{{ item.delete|default('no') }}"
+    direction: "{{ item.direction|default('in') }}"
+    from_ip: "{{ item.from_ip|default('any') }}"
+    to_ip: "{{ item.to_ip|default('any') }}"
+    to_port: "{{ item.to_port|default(item.port) }}"
+    log: "{{ item.log|default('no') }}"
+    proto: "{{ item.proto|default('tcp') }}"
+    rule: "{{ item.rule|default('allow') }}"
+  when: ( ufw_rules_default is defined or ufw_rules is defined ) and ( item.port is defined or item.to_port is defined )
+  with_items: "{{ ufw_rules_default|default([])|union(ufw_rules|default([])) }}"
+
+- name: "Apply ufw policies"
+  ufw:
+    state: "{{ item.state|default('enabled') }}"
+    direction: "{{ item.direction }}"
+    policy: "{{ item.policy }}"
+  when: ufw_policy is defined and item.direction is defined and item.policy is defined
+  with_items: "{{ ufw_policy|default([]) }}"
+
+- name: "Enable ufw logging"
+  ufw: logging="{{ ufw_logging|default('on') }}"
+

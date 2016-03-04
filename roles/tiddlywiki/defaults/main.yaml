@@ -1,0 +1,13 @@
+---
+# file: roles/tiddlywiki/defaults/main.yaml
+# vim:ft=ansible:
+
+tw5_wiki_name: mywiki
+tw5_passwd_file: /etc/apache2/tiddlywiki.htpasswd
+#tw5_password: password123
+tw5_user: nicolaw
+tw5_base_path: /home/nicolaw
+#tw5_cert_filename: /etc/ssl/private/tiddlywiki.key
+#tw5_key_filename: /etc/ssl/private/tiddlywiki.crt
+tw5_serveradmin: nicolaw@tfb.net
+

@@ -1,0 +1,20 @@
+---
+# file: test.yaml
+# vim:ft=ansible:
+
+- name: test
+  hosts:
+    - bran.mlt
+    - sansa.mlt
+  tasks:
+    - copy:
+        src: '{{ item }}'
+        dest: '/tmp/junk.{{ item|basename }}'
+      register: my_var1
+      with_fileglob: roles/nameserver/files/zones/db.nicolaw.*
+    - set_fact: my_var2="{{my_var1.results|selectattr('changed', 'equalto', true)|map(attribute='item')|map('basename')|map('replace', 'db.', '', 1)|list}}"
+      when: inventory_hostname == 'bran.mlt'
+    - set_fact: my_var3="{{ ((hostvars['bran.mlt']|default({}))['my_var2'])|default([]) }}"
+    - debug: var=my_var3
+      when: not inventory_hostname == 'bran.mlt'
+

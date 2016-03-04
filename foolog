@@ -1,0 +1,442 @@
+Mar  2 23:02:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:02:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:02:06 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:02:06 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:02:37 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version jails
+Mar  2 23:02:37 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version pool1
+Mar  2 23:02:37 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version archive
+Mar  2 23:02:37 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version pool2
+Mar  2 23:03:00 brienne /usr/sbin/cron[15609]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:03:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:03:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:03:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:03:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:04:00 brienne /usr/sbin/cron[16041]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:04:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:04:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:04:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:04:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:05:00 brienne /usr/sbin/cron[16475]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:05:00 brienne /usr/sbin/cron[16481]: (root) CMD (/usr/libexec/atrun > /dev/null 2>&1)
+Mar  2 23:05:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:05:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:05:06 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:05:06 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:06:00 brienne /usr/sbin/cron[16897]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:06:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:06:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:06:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:06:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:06:27 brienne syslog-ng[77805]: Log statistics; processed='destination(security)=0', processed='destination(ppp)=0', processed='destination(loghost)=93189', processed='center(received)=137', dropped='dst.udp(loghost#0,udp,10.1.4.213:514)=0', processed='dst.udp(loghost#0,udp,10.1.4.213:514)=93189', stored='dst.udp(loghost#0,udp,10.1.4.213:514)=0', processed='center(queued)=184279', processed='destination(console)=5504', processed='src.none()=0', stamp='src.none()=0', processed='source(src)=137', processed='destination(messages)=6993', processed='destination(xferlog)=0', processed='global(payload_reallocs)=1382', processed='global(sdata_updates)=0', processed='destination(allusers)=0', processed='destination(authlog)=10336', processed='destination(maillog)=0', processed='destination(lpd-errs)=0', processed='destination(cron)=5897', processed='global(msg_clones)=0', processed='src.internal(src#3)=137', stamp='src.internal(src#3)=1456959387', processed='destination(debuglog)=62360'
+Mar  2 23:07:00 brienne /usr/sbin/cron[17315]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:07:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:07:04 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:07:06 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:07:06 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:07:40 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version jails
+Mar  2 23:07:40 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version pool1
+Mar  2 23:07:40 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version archive
+Mar  2 23:07:40 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version pool2
+Mar  2 23:08:00 brienne /usr/sbin/cron[17768]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:08:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:08:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:08:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:08:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:09:00 brienne /usr/sbin/cron[18196]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:09:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:09:04 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:09:06 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:09:06 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:10:00 brienne /usr/sbin/cron[18632]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:10:00 brienne /usr/sbin/cron[18638]: (root) CMD (/usr/libexec/atrun > /dev/null 2>&1)
+Mar  2 23:10:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:10:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:10:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:10:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:11:00 brienne /usr/sbin/cron[19053]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:11:00 brienne /usr/sbin/cron[19060]: (operator) CMD (/usr/libexec/save-entropy > /dev/null 2>&1)
+Mar  2 23:11:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:11:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:11:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:11:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:12:00 brienne /usr/sbin/cron[19480]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:12:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:12:04 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:12:06 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:12:06 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:12:42 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version jails
+Mar  2 23:12:42 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version pool1
+Mar  2 23:12:42 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version archive
+Mar  2 23:12:42 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version pool2
+Mar  2 23:13:00 brienne /usr/sbin/cron[19916]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:13:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:13:04 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:13:06 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:13:06 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:13:13 bran sshd[2093]: Accepted publickey for nicolaw from 2001:8b0:84c:717d:90:155:50:213 port 56211 ssh2: RSA 89:5d:70:7b:67:8b:01:f2:4b:22:44:2e:c7:f1:aa:c4
+Mar  2 23:13:20 bran sshd[2572]: Accepted publickey for nicolaw from 2001:8b0:84c:717d:90:155:50:213 port 56292 ssh2: RSA 89:5d:70:7b:67:8b:01:f2:4b:22:44:2e:c7:f1:aa:c4
+Mar  2 23:13:57 bran ansible-copy: Invoked with src=/tmp/.ansible.nicolaw/ansible-tmp-1456960437.35-61546658480637/source force=True directory_mode=None group=logcheck remote_src=None dest=/etc/logcheck/ignore.d.server/ansible selevel=None seuser=None serole=None content=NOT_LOGGING_PARAMETER setype=None original_basename=ansible delimiter=None mode=416 follow=False owner=root regexp=None validate=None backup=False
+Mar  2 23:13:57 bran ansible-copy: Invoked with src=/tmp/.ansible.nicolaw/ansible-tmp-1456960437.51-138710688457569/source force=True directory_mode=None group=logcheck remote_src=None dest=/etc/logcheck/ignore.d.server/firebrick selevel=None seuser=None serole=None content=NOT_LOGGING_PARAMETER setype=None original_basename=firebrick delimiter=None mode=416 follow=False owner=root regexp=None validate=None backup=False
+Mar  2 23:13:57 bran ansible-copy: Invoked with src=/tmp/.ansible.nicolaw/ansible-tmp-1456960437.66-129028923535877/source force=True directory_mode=None group=logcheck remote_src=None dest=/etc/logcheck/ignore.d.server/nmbd-wins-spam selevel=None seuser=None serole=None content=NOT_LOGGING_PARAMETER setype=None original_basename=nmbd-wins-spam delimiter=None mode=416 follow=False owner=root regexp=None validate=None backup=False
+Mar  2 23:13:57 bran ansible-copy: Invoked with src=/tmp/.ansible.nicolaw/ansible-tmp-1456960437.81-180694085103637/source force=True directory_mode=None group=logcheck remote_src=None dest=/etc/logcheck/ignore.d.server/ssh-connection-spam selevel=None seuser=None serole=None content=NOT_LOGGING_PARAMETER setype=None original_basename=ssh-connection-spam delimiter=None mode=416 follow=False owner=root regexp=None validate=None backup=False
+Mar  2 23:13:58 bran ansible-copy: Invoked with src=/tmp/.ansible.nicolaw/ansible-tmp-1456960438.22-179022731432910/source force=True directory_mode=None group=logcheck remote_src=None dest=/etc/logcheck/ignore.d.server/freenas-9.3 selevel=None seuser=None serole=None content=NOT_LOGGING_PARAMETER setype=None original_basename=freenas-9.3 delimiter=None mode=416 follow=False owner=root regexp=None validate=None backup=False
+Mar  2 23:14:00 brienne /usr/sbin/cron[20347]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:14:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:14:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:14:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:14:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:14:23 bran sshd[5966]: Accepted publickey for nicolaw from 2001:8b0:84c:717d:90:155:50:213 port 56984 ssh2: RSA 89:5d:70:7b:67:8b:01:f2:4b:22:44:2e:c7:f1:aa:c4
+Mar  2 23:14:26 bran ansible-apt_key: Invoked with file=None keyserver=None url=http://repo.zabbix.com/zabbix-official-repo.key validate_certs=True keyring=None state=present key=None data=None id=79EA5ED4
+Mar  2 23:15:00 brienne /usr/sbin/cron[20767]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:15:00 brienne /usr/sbin/cron[20773]: (root) CMD (/usr/libexec/atrun > /dev/null 2>&1)
+Mar  2 23:15:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:15:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:15:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:15:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:15:25 bran ansible-command: Invoked with warn=True executable=None chdir=None _raw_params=find /home/nicolaw/ansible/roles/nameserver/files/zones/ -name 'db.*' -printf '%f\n' removes=None creates=None _uses_shell=False
+Mar  2 23:16:00 brienne /usr/sbin/cron[21203]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:16:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:16:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:16:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:16:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:16:19 bran sshd[7520]: Accepted publickey for nicolaw from 2001:8b0:84c:717d:5a55:caff:fef4:baf3 port 58755 ssh2: RSA e6:d6:1e:d6:bd:79:a1:6f:87:3d:fd:1c:d2:e7:df:2b
+Mar  2 23:16:25 bran sshd[7703]: Accepted publickey for nicolaw from 2001:8b0:84c:717d:5a55:caff:fef4:baf3 port 58759 ssh2: RSA e6:d6:1e:d6:bd:79:a1:6f:87:3d:fd:1c:d2:e7:df:2b
+Mar  2 23:16:27 brienne syslog-ng[77805]: Log statistics; processed='destination(security)=0', processed='destination(ppp)=0', processed='destination(loghost)=93377', processed='center(received)=138', dropped='dst.udp(loghost#0,udp,10.1.4.213:514)=0', processed='dst.udp(loghost#0,udp,10.1.4.213:514)=93377', stored='dst.udp(loghost#0,udp,10.1.4.213:514)=0', processed='center(queued)=184654', processed='destination(console)=5552', processed='src.none()=0', stamp='src.none()=0', processed='source(src)=138', processed='destination(messages)=7041', processed='destination(xferlog)=0', processed='global(payload_reallocs)=1384', processed='global(sdata_updates)=0', processed='destination(allusers)=0', processed='destination(authlog)=10336', processed='destination(maillog)=0', processed='destination(lpd-errs)=0', processed='destination(cron)=5940', processed='global(msg_clones)=0', processed='src.internal(src#3)=138', stamp='src.internal(src#3)=1456959987', processed='destination(debuglog)=62408'
+Mar  2 23:16:31 bran ansible-command: Invoked with warn=True executable=None chdir=None _raw_params=find /home/nicolaw/ansible/roles/nameserver/files/zones/ -name 'db.*' -printf '%f\n' removes=None creates=None _uses_shell=False
+Mar  2 23:16:36 bran sshd[7875]: Accepted publickey for nicolaw from 2001:8b0:84c:717d:90:155:50:213 port 58596 ssh2: RSA 89:5d:70:7b:67:8b:01:f2:4b:22:44:2e:c7:f1:aa:c4
+Mar  2 23:16:39 bran sshd[7877]: Accepted publickey for nicolaw from 2001:8b0:84c:717d:5a55:caff:fef4:baf3 port 58769 ssh2: RSA e6:d6:1e:d6:bd:79:a1:6f:87:3d:fd:1c:d2:e7:df:2b
+Mar  2 23:16:42 bran sshd[8081]: Accepted publickey for nicolaw from 2001:8b0:84c:717d:5a55:caff:fef4:baf3 port 58770 ssh2: RSA e6:d6:1e:d6:bd:79:a1:6f:87:3d:fd:1c:d2:e7:df:2b
+Mar  2 23:16:47 bran ansible-command: Invoked with warn=True executable=None chdir=None _raw_params=find /home/nicolaw/ansible/roles/nameserver/files/zones/ -name 'db.*' -printf '%f\n' removes=None creates=None _uses_shell=False
+Mar  2 23:17:00 brienne /usr/sbin/cron[21623]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:17:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:17:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:17:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:17:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:17:44 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version jails
+Mar  2 23:17:44 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version pool1
+Mar  2 23:17:44 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version archive
+Mar  2 23:17:44 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version pool2
+Mar  2 23:18:00 brienne /usr/sbin/cron[22061]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:18:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:18:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:18:06 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:18:06 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:18:19 brienne transmission-daemon[15144]: Couldn't connect socket 64 to 81.187.194.123, port 57246 (errno 61 - Connection refused) (net.c:288)
+Mar  2 23:18:45 bran sshd[15181]: Accepted publickey for nicolaw from 2001:8b0:84c:717d:90:155:50:213 port 59981 ssh2: RSA 89:5d:70:7b:67:8b:01:f2:4b:22:44:2e:c7:f1:aa:c4
+Mar  2 23:18:54 bran sshd[15581]: Accepted publickey for nicolaw from 2001:8b0:84c:717d:90:155:50:213 port 60089 ssh2: RSA 89:5d:70:7b:67:8b:01:f2:4b:22:44:2e:c7:f1:aa:c4
+Mar  2 23:19:00 brienne /usr/sbin/cron[22489]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:19:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:19:30 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:19:32 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:19:32 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:20:00 brienne /usr/sbin/cron[22926]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:20:00 brienne /usr/sbin/cron[22932]: (root) CMD (/usr/libexec/atrun > /dev/null 2>&1)
+Mar  2 23:20:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:20:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:20:05 bran sshd[18774]: Accepted publickey for nicolaw from 2001:8b0:84c:717d:90:155:50:213 port 60856 ssh2: RSA 89:5d:70:7b:67:8b:01:f2:4b:22:44:2e:c7:f1:aa:c4
+Mar  2 23:20:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:20:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:20:08 bran ansible-apt_key: Invoked with file=None keyserver=None url=http://repo.zabbix.com/zabbix-official-repo.key validate_certs=True keyring=None state=present key=None data=None id=79EA5ED4
+Mar  2 23:20:55 bran ansible-command: Invoked with warn=True executable=None chdir=None _raw_params=find /home/nicolaw/ansible/roles/nameserver/files/zones/ -name 'db.*' -printf '%f\n' removes=None creates=None _uses_shell=False
+Mar  2 23:21:00 brienne /usr/sbin/cron[23348]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:21:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:21:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:21:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:21:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:21:30 brienne smbd[23671]:   STATUS=daemon 'smbd' finished starting up and ready to serve connectionsNo protocol supported !
+Mar  2 23:21:30 brienne smbd[23671]:   STATUS=daemon 'smbd' finished starting up and ready to serve connectionsNo protocol supported !
+Mar  2 23:22:00 brienne /usr/sbin/cron[23768]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:22:00 brienne /usr/sbin/cron[23774]: (operator) CMD (/usr/libexec/save-entropy > /dev/null 2>&1)
+Mar  2 23:22:00 bran ansible-command: Invoked with warn=True executable=None chdir=None _raw_params=find /home/nicolaw/ansible/roles/nameserver/files/zones/ -name 'db.*' -printf '%f\n' removes=None creates=None _uses_shell=False
+Mar  2 23:22:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:22:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:22:06 bran sshd[20552]: Accepted publickey for nicolaw from 2001:8b0:84c:717d:90:155:50:213 port 34060 ssh2: RSA 89:5d:70:7b:67:8b:01:f2:4b:22:44:2e:c7:f1:aa:c4
+Mar  2 23:22:06 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:22:06 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:22:20 bran ansible-command: Invoked with warn=True executable=None chdir=None _raw_params=find /home/nicolaw/ansible/roles/nameserver/files/zones/ -name 'db.*' -printf '%f\n' removes=None creates=None _uses_shell=False
+Mar  2 23:22:32 bran ansible-command: Invoked with creates=/etc/ssl/certs/tw5.mlt.tfb.net.crt executable=None chdir=None _raw_params=openssl req -batch -new -nodes -x509 -utf8 -verbose#012 -newkey "rsa:4096"#012 -subj '/C=GB/ST=Cambridgeshire/L=Milton/O=TFB Technology/OU=/CN=tw5.mlt.tfb.net'#012 -days "1180"#012 -keyout "/etc/ssl/private/tw5.mlt.tfb.net.key"#012 -keyform "PEM"#012 -out "/etc/ssl/certs/tw5.mlt.tfb.net.crt"#012 -outform "PEM" removes=None warn=True _uses_shell=False
+Mar  2 23:22:37 bran ansible-npm: Invoked with executable=None name=tiddlywiki global=True ignore_scripts=False state=present production=True registry=None version=None path=None
+Mar  2 23:22:37 bran ansible-command: Invoked with creates=/etc/apache2/sites-enabled/tiddlywiki-tw5.mlt.tfb.net.conf executable=None chdir=None _raw_params=a2ensite tiddlywiki-tw5.mlt.tfb.net.conf removes=None warn=True _uses_shell=False
+Mar  2 23:22:38 bran ansible-command: Invoked with creates=/etc/apache2/mods-enabled/ssl.load executable=None chdir=None _raw_params=a2enmod "ssl" removes=None warn=True _uses_shell=False
+Mar  2 23:22:38 bran ansible-command: Invoked with creates=/etc/apache2/mods-enabled/rewrite.load executable=None chdir=None _raw_params=a2enmod "rewrite" removes=None warn=True _uses_shell=False
+Mar  2 23:22:38 bran ansible-command: Invoked with creates=/etc/apache2/mods-enabled/headers.load executable=None chdir=None _raw_params=a2enmod "headers" removes=None warn=True _uses_shell=False
+Mar  2 23:22:38 bran ansible-command: Invoked with creates=/etc/apache2/mods-enabled/proxy.load executable=None chdir=None _raw_params=a2enmod "proxy" removes=None warn=True _uses_shell=False
+Mar  2 23:22:38 bran ansible-command: Invoked with creates=/etc/apache2/mods-enabled/proxy_http.load executable=None chdir=None _raw_params=a2enmod "proxy_http" removes=None warn=True _uses_shell=False
+Mar  2 23:22:38 bran ansible-command: Invoked with creates=/home/nicolaw/tw5.mlt.tfb.net executable=None _uses_shell=False _raw_params=tiddlywiki "tw5.mlt.tfb.net" --init server removes=None warn=True chdir=/home/nicolaw
+Mar  2 23:22:38 bran ansible-command: Invoked with warn=True executable=None chdir=None _raw_params=pgrep -u 'nicolaw' -f '^node .* tw5.mlt.tfb.net .*server' removes=None creates=None _uses_shell=False
+Mar  2 23:22:46 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version jails
+Mar  2 23:22:46 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version pool1
+Mar  2 23:22:46 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version archive
+Mar  2 23:22:46 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version pool2
+Mar  2 23:23:00 brienne /usr/sbin/cron[24215]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:23:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:23:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:23:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:23:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:24:00 brienne /usr/sbin/cron[24644]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:24:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:24:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:24:06 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:24:06 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:25:00 brienne /usr/sbin/cron[25066]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:25:00 brienne /usr/sbin/cron[25072]: (root) CMD (/usr/libexec/atrun > /dev/null 2>&1)
+Mar  2 23:25:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:25:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:25:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:25:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:26:00 brienne /usr/sbin/cron[25502]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:26:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:26:04 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:26:06 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:26:06 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:26:27 brienne syslog-ng[77805]: Log statistics; processed='destination(security)=0', processed='destination(ppp)=0', processed='destination(loghost)=93520', processed='center(received)=139', dropped='dst.udp(loghost#0,udp,10.1.4.213:514)=0', processed='dst.udp(loghost#0,udp,10.1.4.213:514)=93520', stored='dst.udp(loghost#0,udp,10.1.4.213:514)=0', processed='center(queued)=184938', processed='destination(console)=5577', processed='src.none()=0', stamp='src.none()=0', processed='source(src)=139', processed='destination(messages)=7066', processed='destination(xferlog)=0', processed='global(payload_reallocs)=1386', processed='global(sdata_updates)=0', processed='destination(allusers)=0', processed='destination(authlog)=10336', processed='destination(maillog)=0', processed='destination(lpd-errs)=0', processed='destination(cron)=5983', processed='global(msg_clones)=0', processed='src.internal(src#3)=139', stamp='src.internal(src#3)=1456960587', processed='destination(debuglog)=62456'
+Mar  2 23:27:00 brienne /usr/sbin/cron[25920]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:27:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:27:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:27:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:27:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:27:50 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version jails
+Mar  2 23:27:50 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version pool1
+Mar  2 23:27:50 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version archive
+Mar  2 23:27:50 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version pool2
+Mar  2 23:27:57 brienne smartd[5252]: Device: /dev/da18 [SAT], Temperature 41 Celsius reached limit of 40 Celsius (Min/Max 27/41)
+Mar  2 23:27:59 brienne smartd[5252]: Device: /dev/da20 [SAT], Temperature 41 Celsius reached limit of 40 Celsius (Min/Max 27/42)
+Mar  2 23:27:59 brienne smartd[5252]: Device: /dev/da21 [SAT], Temperature 40 Celsius reached limit of 40 Celsius (Min/Max 26/41)
+Mar  2 23:28:00 brienne /usr/sbin/cron[26357]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:28:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:28:09 brienne smartd[5252]: Device: /dev/da27 [SAT], Temperature 40 Celsius reached limit of 40 Celsius (Min/Max 27/41)
+Mar  2 23:28:28 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:28:30 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:28:30 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:29:00 brienne /usr/sbin/cron[26790]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:29:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:29:04 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:29:06 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:29:06 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:30:00 brienne /usr/sbin/cron[27210]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:30:00 brienne /usr/sbin/cron[27216]: (root) CMD (/usr/libexec/atrun > /dev/null 2>&1)
+Mar  2 23:30:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:30:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:30:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:30:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:31:00 brienne /usr/sbin/cron[27646]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:31:00 brienne /usr/sbin/cron[27652]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/alert.py > /dev/null 2>&1)
+Mar  2 23:31:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:31:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:31:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:31:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:32:00 brienne /usr/sbin/cron[28070]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:32:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:32:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:32:06 bran sshd[23981]: Accepted publickey for nicolaw from 2001:8b0:84c:717d:90:155:50:213 port 40484 ssh2: RSA 89:5d:70:7b:67:8b:01:f2:4b:22:44:2e:c7:f1:aa:c4
+Mar  2 23:32:06 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:32:06 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:32:23 bran sshd[24730]: Accepted publickey for nicolaw from 2001:8b0:84c:717d:90:155:50:213 port 40676 ssh2: RSA 89:5d:70:7b:67:8b:01:f2:4b:22:44:2e:c7:f1:aa:c4
+Mar  2 23:32:56 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version jails
+Mar  2 23:32:56 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version pool1
+Mar  2 23:32:56 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version archive
+Mar  2 23:32:56 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version pool2
+Mar  2 23:33:00 brienne /usr/sbin/cron[28503]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:33:00 brienne /usr/sbin/cron[28509]: (operator) CMD (/usr/libexec/save-entropy > /dev/null 2>&1)
+Mar  2 23:33:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:33:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:33:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:33:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:34:00 brienne /usr/sbin/cron[28922]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:34:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:34:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:34:06 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:34:06 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:35:00 brienne /usr/sbin/cron[29342]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:35:00 brienne /usr/sbin/cron[29348]: (root) CMD (/usr/libexec/atrun > /dev/null 2>&1)
+Mar  2 23:35:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:35:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:35:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:35:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:35:17 bran sshd[29884]: Accepted publickey for nicolaw from 2001:8b0:84c:717d:90:155:50:213 port 42566 ssh2: RSA 89:5d:70:7b:67:8b:01:f2:4b:22:44:2e:c7:f1:aa:c4
+Mar  2 23:35:26 bran ansible-apt_key: Invoked with file=None keyserver=None url=http://repo.zabbix.com/zabbix-official-repo.key validate_certs=True keyring=None state=present key=None data=None id=79EA5ED4
+Mar  2 23:35:28 bran sshd[30233]: Accepted publickey for nicolaw from 90.155.50.209 port 65294 ssh2: RSA e6:d6:1e:d6:bd:79:a1:6f:87:3d:fd:1c:d2:e7:df:2b
+Mar  2 23:36:00 brienne /usr/sbin/cron[29780]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:36:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:36:04 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:36:06 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:36:06 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:36:27 brienne syslog-ng[77805]: Log statistics; processed='destination(security)=0', processed='destination(ppp)=0', processed='destination(loghost)=93690', processed='center(received)=140', dropped='dst.udp(loghost#0,udp,10.1.4.213:514)=0', processed='dst.udp(loghost#0,udp,10.1.4.213:514)=93690', stored='dst.udp(loghost#0,udp,10.1.4.213:514)=0', processed='center(queued)=185248', processed='destination(console)=5601', processed='src.none()=0', stamp='src.none()=0', processed='source(src)=140', processed='destination(messages)=7090', processed='destination(xferlog)=0', processed='global(payload_reallocs)=1388', processed='global(sdata_updates)=0', processed='destination(allusers)=0', processed='destination(authlog)=10336', processed='destination(maillog)=0', processed='destination(lpd-errs)=0', processed='destination(cron)=6027', processed='global(msg_clones)=0', processed='src.internal(src#3)=140', stamp='src.internal(src#3)=1456961187', processed='destination(debuglog)=62504'
+Mar  2 23:37:00 brienne /usr/sbin/cron[30198]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:37:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:37:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:37:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:37:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:38:00 brienne /usr/sbin/cron[30619]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:38:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:38:03 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version jails
+Mar  2 23:38:03 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version pool1
+Mar  2 23:38:04 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version archive
+Mar  2 23:38:04 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version pool2
+Mar  2 23:38:04 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:38:06 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:38:06 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:39:00 brienne /usr/sbin/cron[31067]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:39:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:39:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:39:06 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:39:06 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:40:00 brienne /usr/sbin/cron[31492]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:40:00 brienne /usr/sbin/cron[31498]: (root) CMD (/usr/libexec/atrun > /dev/null 2>&1)
+Mar  2 23:40:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:40:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:40:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:40:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:41:00 brienne /usr/sbin/cron[31925]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:41:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:41:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:41:06 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:41:06 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:42:00 brienne /usr/sbin/cron[32341]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:42:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:42:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:42:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:42:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:43:00 brienne /usr/sbin/cron[32770]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:43:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:43:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:43:06 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version jails
+Mar  2 23:43:06 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version pool1
+Mar  2 23:43:06 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version archive
+Mar  2 23:43:06 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version pool2
+Mar  2 23:43:06 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:43:06 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:44:00 brienne /usr/sbin/cron[33219]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:44:00 brienne /usr/sbin/cron[33225]: (operator) CMD (/usr/libexec/save-entropy > /dev/null 2>&1)
+Mar  2 23:44:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:44:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:44:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:44:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:45:00 brienne /usr/sbin/cron[33643]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:45:00 brienne /usr/sbin/cron[33649]: (root) CMD (/usr/libexec/atrun > /dev/null 2>&1)
+Mar  2 23:45:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:45:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:45:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:45:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:46:00 brienne /usr/sbin/cron[34083]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:46:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:46:04 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:46:06 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:46:06 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:46:27 brienne syslog-ng[77805]: Log statistics; processed='destination(security)=0', processed='destination(ppp)=0', processed='destination(loghost)=93830', processed='center(received)=141', dropped='dst.udp(loghost#0,udp,10.1.4.213:514)=0', processed='dst.udp(loghost#0,udp,10.1.4.213:514)=93830', stored='dst.udp(loghost#0,udp,10.1.4.213:514)=0', processed='center(queued)=185527', processed='destination(console)=5625', processed='src.none()=0', stamp='src.none()=0', processed='source(src)=141', processed='destination(messages)=7114', processed='destination(xferlog)=0', processed='global(payload_reallocs)=1390', processed='global(sdata_updates)=0', processed='destination(allusers)=0', processed='destination(authlog)=10336', processed='destination(maillog)=0', processed='destination(lpd-errs)=0', processed='destination(cron)=6070', processed='global(msg_clones)=0', processed='src.internal(src#3)=141', stamp='src.internal(src#3)=1456961787', processed='destination(debuglog)=62552'
+Mar  2 23:47:00 brienne /usr/sbin/cron[34503]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:47:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:47:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:47:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:47:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:48:00 brienne /usr/sbin/cron[34921]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:48:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:48:04 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:48:06 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:48:06 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:48:07 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version jails
+Mar  2 23:48:07 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version pool1
+Mar  2 23:48:08 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version archive
+Mar  2 23:48:08 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version pool2
+Mar  2 23:49:00 brienne /usr/sbin/cron[35370]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:49:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:49:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:49:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:49:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:50:00 brienne /usr/sbin/cron[35794]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:50:00 brienne /usr/sbin/cron[35800]: (root) CMD (/usr/libexec/atrun > /dev/null 2>&1)
+Mar  2 23:50:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:50:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:50:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:50:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:51:00 brienne /usr/sbin/cron[36228]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:51:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:51:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:51:06 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:51:06 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:51:30 brienne smbd[36570]:   STATUS=daemon 'smbd' finished starting up and ready to serve connectionsNo protocol supported !
+Mar  2 23:51:30 brienne smbd[36570]:   STATUS=daemon 'smbd' finished starting up and ready to serve connectionsNo protocol supported !
+Mar  2 23:52:00 brienne /usr/sbin/cron[36646]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:52:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:52:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:52:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:52:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:53:00 brienne /usr/sbin/cron[37068]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:53:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:53:04 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:53:06 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:53:06 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:53:09 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version jails
+Mar  2 23:53:09 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version pool1
+Mar  2 23:53:09 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version archive
+Mar  2 23:53:10 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version pool2
+Mar  2 23:54:00 brienne /usr/sbin/cron[37517]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:54:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:54:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:54:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:54:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:55:00 brienne /usr/sbin/cron[37933]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:55:00 brienne /usr/sbin/cron[37940]: (operator) CMD (/usr/libexec/save-entropy > /dev/null 2>&1)
+Mar  2 23:55:00 brienne /usr/sbin/cron[37941]: (root) CMD (/usr/libexec/atrun > /dev/null 2>&1)
+Mar  2 23:55:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:55:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:55:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:55:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:55:54 brienne afpd[38363]: Login by nicolaw (AFP3.4)
+Mar  2 23:56:00 brienne /usr/sbin/cron[38383]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:56:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:56:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:56:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:56:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:56:27 brienne syslog-ng[77805]: Log statistics; processed='destination(security)=0', processed='destination(ppp)=0', processed='destination(loghost)=94021', processed='center(received)=142', dropped='dst.udp(loghost#0,udp,10.1.4.213:514)=0', processed='dst.udp(loghost#0,udp,10.1.4.213:514)=94021', stored='dst.udp(loghost#0,udp,10.1.4.213:514)=0', processed='center(queued)=185908', processed='destination(console)=5674', processed='src.none()=0', stamp='src.none()=0', processed='source(src)=142', processed='destination(messages)=7164', processed='destination(xferlog)=0', processed='global(payload_reallocs)=1392', processed='global(sdata_updates)=0', processed='destination(allusers)=0', processed='destination(authlog)=10336', processed='destination(maillog)=0', processed='destination(lpd-errs)=0', processed='destination(cron)=6113', processed='global(msg_clones)=0', processed='src.internal(src#3)=142', stamp='src.internal(src#3)=1456962387', processed='destination(debuglog)=62600'
+Mar  2 23:57:00 brienne /usr/sbin/cron[38799]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:57:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:57:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:57:06 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:57:06 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:57:57 brienne smartd[5252]: Device: /dev/da18 [SAT], Temperature 41 Celsius reached limit of 40 Celsius (Min/Max 27/41)
+Mar  2 23:57:59 brienne smartd[5252]: Device: /dev/da20 [SAT], Temperature 41 Celsius reached limit of 40 Celsius (Min/Max 27/42)
+Mar  2 23:58:00 brienne smartd[5252]: Device: /dev/da21 [SAT], Temperature 40 Celsius reached limit of 40 Celsius (Min/Max 26/41)
+Mar  2 23:58:00 brienne /usr/sbin/cron[39223]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:58:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:58:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:58:05 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:58:05 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  2 23:58:10 brienne smartd[5252]: Device: /dev/da27 [SAT], Temperature 40 Celsius reached limit of 40 Celsius (Min/Max 27/41)
+Mar  2 23:58:11 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version jails
+Mar  2 23:58:11 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version pool1
+Mar  2 23:58:11 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version archive
+Mar  2 23:58:11 brienne alert.py: [middleware.notifier:214] Popen()ing: zpool get -H -o value version pool2
+Mar  2 23:58:26 brienne afpd[38363]: AFP logout by nicolaw
+Mar  2 23:58:26 brienne afpd[38363]: AFP statistics: 84887.67 KB read, 168102.63 KB written
+Mar  2 23:58:26 brienne afpd[38363]: done
+Mar  2 23:59:00 brienne /usr/sbin/cron[39681]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  2 23:59:02 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  2 23:59:10 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  2 23:59:12 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  2 23:59:12 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  3 00:00:00 brienne /usr/sbin/cron[40137]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  3 00:00:00 brienne /usr/sbin/cron[40139]: (root) CMD (PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/root/bin" /bin/chmod -R o-w /mnt/pool1/video/ > /dev/null)
+Mar  3 00:00:00 brienne /usr/sbin/cron[40141]: (root) CMD (PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/root/bin" /bin/chmod -R a+r /mnt/pool1/video/ > /dev/null)
+Mar  3 00:00:00 brienne /usr/sbin/cron[40150]: (root) CMD (/usr/local/bin/python /usr/local/bin/mfistatus.py > /dev/null 2>&1)
+Mar  3 00:00:00 brienne /usr/sbin/cron[40152]: (root) CMD (newsyslog > /dev/null 2>&1)
+Mar  3 00:00:00 brienne /usr/sbin/cron[40153]: (operator) CMD (/usr/libexec/save-entropy > /dev/null 2>&1)
+Mar  3 00:00:00 brienne /usr/sbin/cron[40154]: (root) CMD (/usr/libexec/atrun > /dev/null 2>&1)
+Mar  3 00:00:00 brienne /usr/sbin/cron[40155]: (root) CMD (/bin/sh /usr/local/sbin/save_rrds.sh > /dev/null 2>&1)
+Mar  3 00:00:00 brienne syslog-ng[77805]: Configuration reload request received, reloading configuration;
+Mar  3 00:00:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  3 00:00:03 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  3 00:00:06 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  3 00:00:06 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  3 00:00:07 bran sshd[2130]: Authentication tried for nicolaw with correct key but not from a permitted host (host=2a00:81c0:0:20:1aa9:5ff:feb9:39da, ip=2a00:81c0:0:20:1aa9:5ff:feb9:39da).
+Mar  3 00:00:08 bran sshd[2135]: Accepted publickey for nicolaw from 81.134.152.4 port 36244 ssh2: RSA 0c:c0:02:b1:80:eb:1a:9c:4c:13:1d:f9:11:dc:a1:84
+Mar  3 00:00:09 bran sshd[2179]: Accepted publickey for nicolaw from 81.134.152.4 port 36245 ssh2: RSA 22:2d:4b:94:b2:98:54:c3:8f:94:6b:a8:f1:09:36:57
+Mar  3 00:01:00 brienne /usr/sbin/cron[40955]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)
+Mar  3 00:01:00 brienne /usr/sbin/cron[40962]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/alert.py > /dev/null 2>&1)
+Mar  3 00:01:00 brienne /usr/sbin/cron[40963]: (root) CMD (adjkerntz -a > /dev/null 2>&1)
+Mar  3 00:01:03 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs list -t snapshot -H -o name
+Mar  3 00:01:13 brienne autosnap.py: [tools.autosnap:71] Popen()ing: /sbin/zfs snapshot -r "jails@auto-20160303.0001-6h"
+Mar  3 00:01:13 brienne autosnap.py: [tools.autosnap:352] Autorepl running, skip destroying snapshots
+Mar  3 00:01:15 brienne autorepl.py: [tools.autorepl:184] Checking if process 6509 is still alive
+Mar  3 00:01:15 brienne autorepl.py: [tools.autorepl:188] Process 6509 still working, quitting
+Mar  3 00:02:00 brienne /usr/sbin/cron[42413]: (root) CMD (/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap.py > /dev/null 2>&1)

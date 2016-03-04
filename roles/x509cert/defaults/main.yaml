@@ -1,0 +1,6 @@
+---
+# file: roles/x509cert/defaults/default.yaml
+# vim:ft=ansible:
+
+rsa_key_size: 4096
+

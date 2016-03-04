@@ -1,0 +1,9 @@
+---
+# file: roles/nameserver/handlers/main.yaml
+# vim:ft=ansible:
+
+- name: "bind9 restarted"
+  service:
+    name: bind9
+    state: restarted
+

@@ -1,0 +1,42 @@
+---
+# file: roles/openssh-server/defaults/main.yaml
+# vim:ft=ansible:
+# https://wiki.mozilla.org/Security/Guidelines/OpenSSH
+
+sshd_config: /etc/ssh/sshd_config
+sshd_port: 22
+sshd_publickey_path: /etc/ssh/publickey
+
+sshd_allowusers:
+  - nicolaw
+  - jen
+  - rsnapshot
+
+sshd_parameters:
+  # https://github.com/ansible/ansible/issues/14250
+  #AuthenticationMethods: "publickey,password"
+  UseDNS: "no"
+  UsePrivilegeSeparation: "sandbox"
+  KexAlgorithms: "diffie-hellman-group-exchange-sha256"
+  MACs: "hmac-sha2-512,hmac-sha2-256"
+  Ciphers: "aes256-ctr,aes192-ctr,aes128-ctr"
+  Protocol: 2
+  AuthorizedKeysFile: "{{ sshd_publickey_path }}/root.keys {{ sshd_publickey_path }}/root.certs {{ sshd_publickey_path }}/%u.keys {{ sshd_publickey_path }}/%u.certs .ssh/authorized_keys .ssh/authorized_keys2"
+  VersionAddendum: "unauthorised-access-permission-denied"
+  Banner: "/etc/issue.net"
+  PubkeyAuthentication: "yes"
+  PermitEmptyPasswords: "no"
+  PasswordAuthentication: "no"
+  HostbasedAuthentication: "no"
+  RSAAuthentication: "yes"
+  RhostsRSAAuthentication: "no"
+  StrictModes: "yes"
+  IgnoreUserKnownHosts: "yes"
+  IgnoreRhosts: "yes"
+  PermitRootLogin: "no"
+  KeyRegenerationInterval: 900
+  LoginGraceTime: "30s"
+  ServerKeyBits: 4096
+  ClientAliveInterval: 10
+  ClientAliveCountMax: 6
+

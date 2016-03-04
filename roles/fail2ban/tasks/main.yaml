@@ -1,0 +1,29 @@
+---
+# file: roles/fail2ban/tasks/main.yaml
+# vim:ft=ansible:
+
+- apt:
+    state: "latest"
+    name: "{{ item }}"
+  with_items:
+    - fail2ban
+
+- name: 'Install local jail.local configuration'
+  template:
+    dest: '/etc/fail2ban/jail.local'
+    src: 'jail.local.j2'
+    owner: 'root'
+    group: 'root'
+    mode: '0640'
+  notify: restart fail2ban
+
+- name: 'Install additional filter configuration files'
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/fail2ban/filter.d/{{ item|basename }}"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  with_fileglob: "filter.d/*.conf"
+  notify: restart fail2ban
+

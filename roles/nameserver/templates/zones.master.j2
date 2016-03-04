@@ -1,0 +1,10 @@
+
+{% for zone in nameserver_zones %}
+zone "{{ zone }}" {
+	type master;
+	notify yes;
+	file "{{ nameserver_zone_directory }}/db.{{ zone }}";
+};
+
+{% endfor %}
+

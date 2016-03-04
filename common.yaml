@@ -1,0 +1,47 @@
+---
+# file: common.yaml
+# vim:ft=ansible:
+
+- hosts: all
+  roles:
+    - custom-facts
+  tasks:
+    - group_by: key=distribution_{{ ansible_distribution }}
+    - group_by: key=os_{{ ansible_os_family }}
+    - group_by: key=machine_{{ ansible_machine }}
+    - group_by: key=virt_{{ ansible_virtualization_type }}_{{ ansible_virtualization_role }}
+
+- name: motd
+  hosts: os_Debian
+  gather_facts: False
+  roles:
+    - motd
+
+- name: harden
+  hosts: tfb
+  tags: [ 'security' ]
+  roles:
+    - role: 'unattended-updates'
+    - role: 'openssh-server'
+      tags: [ 'openssh-server' ]
+    - role: 'openssh-client'
+      tags: [ 'openssh-client' ]
+    - role: 'fail2ban'
+      tags: [ 'fail2ban' ]
+      when: not ansible_system_vendor in [ 'Google' ]
+    - role: 'rkhunter'
+      tags: [ 'rkhunter' ]
+      when: not ansible_system_vendor in [ 'Google' ]
+    - role: 'logcheck'
+      tags: [ 'logcheck' ]
+      when: not ansible_system_vendor in [ 'Google' ]
+
+- name: common
+  hosts: tfb
+  tags: [ 'common' ]
+  roles:
+    - mta
+    - packages
+    - scripts
+    - zabbix-agent
+

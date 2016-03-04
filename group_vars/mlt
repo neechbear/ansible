@@ -1,0 +1,2 @@
+ansible_ssh_port: 1009
+sshd_port: 1009

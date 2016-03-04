@@ -1,0 +1,73 @@
+---
+# file: roles/mta/tasks/main.yaml
+# vim:ft=ansible:
+
+- name: "Configure MTA"
+  debconf:
+    name: "{{ item.pkg }}"
+    question: "{{ item.question }}"
+    vtype: "{{ item.vtype }}"
+    value: "{{ item.value }}"
+  notify:
+    - reconfigure exim
+  with_items:
+   - { pkg: 'exim4-config', question: 'exim4/dc_eximconfig_configtype', vtype: 'select',  value: 'mail sent by smarthost; received via SMTP or fetchmail' }
+   - { pkg: 'exim4-config', question: 'exim4/hide_mailname',            vtype: 'boolean', value: 'true' }
+   - { pkg: 'exim4-config', question: 'exim4/dc_smarthost',             vtype: 'string',  value: "{{ smtp_smarthost }}" }
+   - { pkg: 'exim4-config', question: 'exim4/dc_other_hostnames',       vtype: 'string',  value: "{{ ansible_fqdn }}" }
+   - { pkg: 'exim4-config', question: 'exim4/mailname',                 vtype: 'string',  value: "{{ ansible_fqdn }}" }
+   - { pkg: 'exim4-config', question: 'exim4/dc_readhost',              vtype: 'string',  value: "{{ ansible_fqdn }}" }
+   - { pkg: 'postfix',      question: 'postfix/mailname',               vtype: 'string',  value: "{{ ansible_fqdn }}" }
+   - { pkg: 'postfix',      question: 'postfix/destinations',           vtype: 'string',  value: "{{ ansible_fqdn }}" }
+   - { pkg: 'postfix',      question: 'postfix/root_address',           vtype: 'string',  value: "nicolaw+{{ inventory_hostname_short }}@tfb.net" }
+
+- name: "Install Exim4"
+  apt:
+    state: "latest"
+    name: "{{ item }}"
+  with_items:
+    - exim4
+
+- name: "Remove Postscript"
+  apt:
+    state: "absent"
+    name: "{{ item }}"
+  with_items:
+    - postscript
+
+- name: "Update MTA identity file /etc/mailname"
+  template:
+    src: "mailname.j2"
+    dest: "/etc/mailname"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  notify:
+    - reconfigure exim
+  when: false
+
+- name: 'Update root mail alias'
+  lineinfile:
+    dest: '/etc/aliases'
+    regexp: '^root: '
+    line: "root: nicolaw+{{ inventory_hostname_short }}@tfb.net"
+    state: present
+    create: yes
+    owner: root
+    group: root
+  register: aliases
+
+- name: 'Refresh mail aliases database'
+  command: /usr/bin/newaliases
+  when: aliases.changed
+
+- name: "Touch Exim4 reject log"
+  file:
+    path: "/var/log/exim4/rejectlog"
+    state: "touch"
+    owner: "Debian-exim"
+    group: "adm"
+    mode: 0640
+  changed_when: false
+
+

@@ -1,0 +1,114 @@
+
+[DEFAULT]
+ignoreip  = 127.0.0.1 ::1 10.1.4.0/24 10.1.3.0/24 90.155.50.208/28 93.186.33.96/27 81.187.24.249/29 81.187.194.123/32 2001:8b0:84c:717d::/64
+bantime   = 3600
+destemail = nicolaw+fail2ban@tfb.net
+banaction = iptables-multiport
+action    = %(action_mwl)s
+
+[ssh]
+enabled   = true
+port      = ssh,sftp,telnet,1009
+maxretry  = 5
+
+[ssh-ddos]
+enabled   = true
+
+[pam-generic]
+enabled   = true
+banaction = iptables-allports
+
+{% if ansible_local.listening_daemons.daemons.named is defined %}
+[named-refused-udp]
+enabled  = true
+port     = domain,953
+protocol = udp
+filter   = named-refused
+logpath  = /var/log/named/security.log
+bantime  = 1800
+maxretry = 4
+
+[named-refused-tcp]
+enabled  = true
+port     = domain,953
+protocol = udp
+filter   = named-refused
+logpath  = /var/log/named/security.log
+bantime  = 1800
+maxretry = 4
+{% endif %}
+
+{% if ansible_local.listening_daemons.daemons.apache2 is defined %}
+[apache]
+enabled = true
+
+[apache-auth]
+enabled   = true
+port      = http,https
+filter    = apache-auth
+banaction = iptables-multiport
+action    = %(action_mwl)s
+logpath   = /var/log/apache*/*access.log
+maxretry  = 1
+
+[apache-noscript]
+enabled   = true
+port      = http,https
+banaction = iptables-multiport
+action    = %(action_mwl)s
+
+[apache-overflows]
+enabled   = true
+
+[apache-badbots]
+enabled   = true
+port      = http,https
+filter    = apache-badbots
+banaction = iptables-allports
+action    = %(action_mwl)s
+logpath   = /var/log/apache*/*access.log
+maxretry  = 1
+
+[apache-nohome]
+enabled   = true
+port      = http,https
+filter    = apache-nohome
+banaction = iptables-multiport
+action    = %(action_mwl)s
+logpath   = /var/log/apache*/*access.log
+maxretry  = 1
+
+[php-url-fopen]
+enabled   = true
+port      = http,https
+filter    = php-url-fopen
+logpath   = /var/log/apache*/*access.log
+maxretry  = 1
+
+[exim]
+enabled  = true
+filter   = exim
+port     = smtp,ssmtp
+logpath  = /var/log/exim*/rejectlog
+maxretry = 1
+
+[apache-w00tw00t]
+enabled   = true
+port      = http,https
+filter    = apache-w00tw00t
+banaction = iptables-allports
+action    = %(action_mwl)s
+logpath   = /var/log/apache*/*error.log
+maxretry  = 1
+
+[apache-myadmin]
+enabled   = true
+port      = http,https
+filter    = apache-myadmin
+banaction = iptables-allports
+action    = %(action_mwl)s
+logpath   = /var/log/apache*/*error.log
+maxretry  = 2
+{% endif %}
+
+

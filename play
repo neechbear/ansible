@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if ! [[ "$*" =~ [a-zA-Z0-9]\.yaml ]] ; then
+    playbook=~/ansible/playbook.yaml
+fi
+
+if [[ -z "$SSH_AUTH_SOCK" ]] ; then
+    if SSH_AGENT_PID="$(pgrep -n -u "$USER" ssh-agent)" ; then
+        export SSH_AGENT_PID
+        export SSH_AUTH_SOCK="$(find /tmp/ -mindepth 2 -maxdepth 2 -type s -name "agent.$(( SSH_AGENT_PID - 1 ))")"
+    else
+        eval $(ssh-agent -t 3600)
+    fi
+fi
+
+if ! ssh-add -l ; then
+    ssh-add
+fi
+
+set -x
+ansible-playbook $playbook "$@"
+

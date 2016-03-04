@@ -1,0 +1,19 @@
+---
+# file: roles/openssh-client/tasks/jorah.yaml
+# vim:ft=ansible:
+
+- copy: >
+    src="B9C246D1.asc"
+    dest="/var/www/s/B9C246D1.asc"
+    owner=root
+    group=root
+    mode=0444
+
+- assemble: >
+    src="nicolaw"
+    dest="/var/www/s/publickeys/authorized_keys"
+    remote_src=false
+    owner=root
+    group=root
+    mode=0444
+

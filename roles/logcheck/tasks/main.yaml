@@ -1,0 +1,21 @@
+---
+# file: roles/logcheck/tasks/main.yaml
+# vim:ft=ansible:
+
+- name: 'Install logcheck packages'
+  apt:
+    state: 'latest'
+    name: "{{ item }}"
+  with_items:
+    - logcheck
+    - logcheck-database
+
+- copy:
+    src: '{{ item }}'
+    dest: '/etc/logcheck/ignore.d.server/{{ item|basename }}'
+    owner: 'root'
+    group: 'logcheck'
+    mode: 0640
+  with_fileglob:
+    - ignore.d.server/*
+

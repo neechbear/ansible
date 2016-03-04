@@ -1,0 +1,49 @@
+#!/usr/bin/perl -wT
+
+use strict;
+use warnings;
+
+use English qw(-no_match_vars);
+use JSON qw(encode_json);
+
+use constant NETSTAT_CMD => ($EFFECTIVE_USER_ID != 0
+	                     ? ('/usr/bin/sudo', '/bin/netstat', '-ltnup')
+	                     : ('/bin/netstat', '-ltnup'));
+
+%ENV = ();
+
+my @listen;
+my %daemon;
+my %ports;
+
+if (open(my $fh, '-|', +NETSTAT_CMD())) {
+	while (local $_ = <$fh>) {
+		chomp;
+		if (m/^(?:udp|tcp)6?\s+/i) {
+			my @cols = qw(proto recvq sendq local_addr foreign_addr state pid);
+			@cols = qw(proto recvq sendq local_addr foreign_addr pid) if m/^udp/i;
+
+			my %data;
+			@data{@cols} = split(/\s+/, $_, scalar(@cols));
+			@data{qw(pid program)} = split(m![/: ]+!, $data{pid});
+			($data{port}) = $data{local_addr} =~ m/([0-9]+)$/;
+			push @listen, \%data; 
+
+			$daemon{$data{program}} //= [];
+			push @{$daemon{$data{program}}}, $data{port} if !grep($_ eq $data{port}, @{$daemon{$data{program}}});
+
+			$ports{$data{port}} //= [];
+			push @{$ports{$data{port}}}, $data{program} if !grep($_ eq $data{program}, @{$ports{$data{port}}});
+		}
+	}
+	close($fh);
+}
+
+print encode_json({
+	netstat => \@listen,
+	daemons => \%daemon,
+	ports   => \%ports
+	});
+
+exit;
+

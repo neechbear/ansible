@@ -1,0 +1,7 @@
+---
+# file: roles/openssh-server/handlrs/main.yaml
+# vim:ft=ansible:
+
+- name: restart ssh
+  service: name=ssh state=restarted
+

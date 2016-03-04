@@ -1,0 +1,118 @@
+---
+# file: roles/tiddlywiki/tasks/main.yaml
+# vim:ft=ansible:
+
+- set_fact:
+    tw5_wiki_name: "{{ tw5_wiki_name|default('mywiki') }}"
+    tw5_base_path: "{{ tw5_base_path|default('/home/' ~ ansible_env.SUDO_USER) }}"
+    tw5_wiki_path: "{{ tw5_base_path|default('/home/' ~ ansible_env.SUDO_USER) ~ '/' ~ tw5_wiki_name|default('mywiki') }}"
+    tw5_passwd_file: "{{ tw5_passwd_file|default('/etc/apache2/tiddlywiki' ~ tw5_wiki_name|default('mywiki') ~ '.htpasswd') }}"
+    tw5_user: "{{ tw5_user|default(ansible_env.SUDO_USER) }}"
+
+- apt: >
+    state=latest
+    name="{{ item }}"
+  with_items:
+    - nodejs
+    - nodejs-legacy
+    - npm
+    - apache2
+    - apache2-utils
+    - screen
+
+#- command: >
+#    npm install -g tiddlywiki
+#  args:
+#    creates: "/usr/local/bin/tiddlywiki"
+
+- npm: >
+    name=tiddlywiki
+    global=yes
+    state=present
+    production=yes
+
+- name: "Install Apache site configuration file"
+  template: >
+    src="tiddlywiki.conf.j2"
+    dest="/etc/apache2/sites-available/tiddlywiki-{{ tw5_wiki_name }}.conf"
+    owner=root
+    group=root
+    mode=0644
+  notify: restart apache2
+
+- name: "Add username and password to Apache htpasswd file"
+  command: >
+    htpasswd
+      -b -B
+      -c "{{ tw5_passwd_file }}"
+      "{{ tw5_user }}" "{{ tw5_password }}"
+  args:
+    creates: "{{ tw5_passwd_file }}"
+  when: tw5_password is defined
+
+- name: "Add password hashed to Apache htpasswd file"
+  lineinfile:
+    dest: "{{ tw5_passwd_file }}"
+    state: "present"
+    line: "{{ item }}"
+  with_items: '{{ tw5_crypts }}'
+  when: tw5_crypts is defined
+
+#- command: >
+#    a2dissite *
+#  args:
+#    chdir: "/etc/apache2/sites-enabled"
+
+#- name: "Check for existing Apache site configuration file"
+#  command: test -e "/etc/apache/sites-enabled/tiddlywiki-{{ tw5_wiki_name }}.conf"
+#  register: apache_site_config_file
+#  changed_when: false
+#  failed_when: false
+
+- name: "Enable Apache site configuration file"
+  command: a2ensite tiddlywiki-{{ tw5_wiki_name }}.conf
+  args:
+    creates: "/etc/apache2/sites-enabled/tiddlywiki-{{ tw5_wiki_name }}.conf"
+
+- name: "Enable Apache module dependencies"
+  command: a2enmod "{{ item }}"
+  args:
+    creates: "/etc/apache2/mods-enabled/{{ item }}.load"
+  with_items:
+    - ssl
+    - rewrite
+    - headers
+    - proxy
+    - proxy_http
+  notify: restart apache2
+
+- name: "Initialise TiddlyWiki server"
+  command: >
+    tiddlywiki "{{ tw5_wiki_name }}" --init server
+  args:
+    chdir: "{{ tw5_base_path }}"
+    creates: "{{ tw5_wiki_path }}"
+  become: no
+  notify: restart apache2
+
+- name: "Check if NodeJS server is already running"
+  command: >
+    pgrep -u '{{ ansible_env.SUDO_USER }}' -f '^node .* {{ tw5_wiki_name }} .*server'
+  register: nodejs_pid
+  changed_when: false
+
+# Find out how to run the nodejs tiddlywiki server process as a background
+# daemon, instead of running it inside of a GNU Screen session.
+- name: "Start TiddlyWiki NodeJS server inside GNU Screen"
+  command: >
+    screen
+      -c /dev/null -d -m -U
+      -S tw5-{{ tw5_wiki_name }}
+      -t tw5-{{ tw5_wiki_name }}
+      tiddlywiki "{{ tw5_wiki_name }}" --server
+  args:
+    chdir: "{{ tw5_base_path }}"
+  become: no
+  when: not nodejs_pid is defined
+
+

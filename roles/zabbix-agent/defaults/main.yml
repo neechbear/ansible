@@ -1,0 +1,51 @@
+---
+# defaults file for zabbix-agent
+
+zabbix_version: 2.4
+zabbix_repo: True
+agent_server: 90.155.50.213,10.1.4.213,2001:8b0:84c:717d:90:155:50:213,127.0.0.1,::1
+agent_serveractive: 90.155.50.213
+
+# Zabbix API stuff
+zabbix_api_use: True
+zabbix_url: "https://bran.mlt.tfb.net/zabbix"
+zabbix_api_user: zabbix_api_user
+zabbix_api_pass: 5fa4afdca27dbe2df6cc32721278
+zabbix_create_hostgroup: present  # or absent
+zabbix_create_host: present       # or absent
+zabbix_host_status: enabled       # or disabled
+zabbix_useuip: 1
+zabbix_host_groups:
+  - Ansible
+zabbix_link_templates:
+  - Template App Ansible Provisioned
+
+# Zabbix configuration variables
+agent_pidfile: /var/run/zabbix/zabbix_agentd.pid
+agent_logfile: /var/log/zabbix/zabbix_agentd.log
+agent_logfilesize: 100
+agent_debuglevel: 3
+agent_sourceip:
+agent_enableremotecommands: 1
+agent_logremotecommands: 1
+agent_listenport: 10050
+agent_listeninterface:
+agent_listenip:
+agent_startagents: 3
+agent_hostname:
+agent_hostnameitem: system.run[hostname -f]
+agent_hostmetadata:
+agent_hostmetadataitem:
+agent_refreshactivechecks: 120
+agent_buffersend: 5
+agent_buffersize: 100
+agent_maxlinespersecond: 100
+agent_allowroot: 0
+agent_zabbix_alias:
+agent_timeout: 7
+agent_include: /etc/zabbix/zabbix_agentd.d
+agent_unsafeuserparameters: 0
+agent_userparameter:
+agent_loadmodulepath: ${libdir}/modules
+agent_loadmodule:
+

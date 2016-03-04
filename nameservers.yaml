@@ -1,0 +1,67 @@
+---
+# file: nameservers.yaml
+# vim:ft=ansible:
+
+- name: ns1.tfb.net
+  hosts: theon.rbsov
+  tags: [ 'dns' ]
+  roles:
+    - role: network-interface
+      network_ether_interfaces:
+        - device: 'eth0:98'
+          bootproto: 'static'
+          address: '93.186.33.98'
+          netmask: '255.255.255.224'
+          gateway: '93.186.33.97'
+    - role: nameserver
+      nameserver_type: "master"
+      nameserver_query_source: '93.186.33.98'
+      tags: [ 'nameserver-role', 'ns1.tfb.net' ]
+
+- name: ns2.tfb.net
+  hosts: tyrion.rbsov
+  tags: [ 'dns' ]
+  roles:
+    - role: network-interface
+      network_ether_interfaces:
+        - device: 'eth0:104'
+          bootproto: 'static'
+          address: '93.186.33.104'
+          netmask: '255.255.255.224'
+          gateway: '93.186.33.97'
+    - role: nameserver
+      nameserver_type: "slave"
+      nameserver_query_source: '93.186.33.104'
+      tags: [ 'nameserver-role', 'ns2.tfb.net' ]
+
+- name: ns3.tfb.net
+  hosts: bran.mlt
+  tags: [ 'dns' ]
+  roles:
+    - role: network-interface
+      network_ether_interfaces:
+        - device: 'eth0:214'
+          bootproto: 'static'
+          address: '90.155.50.214'
+          netmask: '255.255.255.240'
+          gateway: '90.155.50.209'
+        - device: 'eth0:214v6'
+          netproto: 'inet6'
+          bootproto: 'static'
+          address: '2001:8b0:84c:717d:90:155:50:214'
+          netmask: '64'
+          gateway: '2001:8b0:84c:717d::1'
+    - role: nameserver
+      nameserver_type: "slave"
+      nameserver_query_source: '90.155.50.214'
+      nameserver_query_source_v6: '2001:8b0:84c:717d:90:155:50:214'
+      tags: [ 'nameserver-role', 'ns3.tfb.net' ]
+
+- name: ns4.tfb.net
+  hosts: ns4.gce
+  tags: [ 'dns' ]
+  roles:
+    - role: nameserver
+      nameserver_type: "slave"
+      tags: [ 'nameserver-role', 'ns4.tfb.net' ]
+

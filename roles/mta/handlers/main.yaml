@@ -1,0 +1,9 @@
+---
+# file: roles/mta/handlers/main.yaml
+# vim:ft=ansible:
+
+- name: reconfigure exim
+  command: /usr/sbin/update-exim4.conf
+  notify:
+    - restart exim
+

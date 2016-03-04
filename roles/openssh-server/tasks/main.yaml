@@ -1,0 +1,92 @@
+---
+# file: roles/openssh-server/tasks/main.yaml
+# vim:ft=ansible:
+
+# https://blog.0xbadc0de.be/archives/300
+
+- file:
+    path: "{{ sshd_publickey_path }}"
+    state: "directory"
+    mode: 0755
+    owner: "root"
+    group: "root"
+
+- copy:
+    src: "root.keys"
+    dest: "{{ sshd_publickey_path }}/root.keys"
+    mode: 0444
+    owner: "root"
+    group: "root"
+
+- lineinfile: >
+    dest="{{ sshd_config }}"
+    state=present
+    regexp="^AllowUsers\s+"
+    line="AllowUsers {{ sshd_allowusers|join(' ') }}"
+  when: not sshd_allowgroups is defined
+  notify:
+    - restart ssh
+
+- lineinfile: >
+    dest="{{ sshd_config }}"
+    state=present
+    regexp="^AllowGroups\s+"
+    line="AllowGroups {{ sshd_allowgroups|join(' ') }}"
+  when: sshd_allowgroups is defined
+  notify:
+    - restart ssh
+
+- lineinfile: >
+    dest="{{ sshd_config }}"
+    state=absent
+    regexp="^AllowGroups\s+"
+  when: not sshd_allowgroups is defined or sshd_allowusers is defined
+  notify:
+    - restart ssh
+
+# TODO: Check the size of the host RSA key, and regenerate
+#       it if it is not at least 4096 bits is size.
+# ssh-keygen -t rsa -b 4096 -N '' -f ssh_host_rsa_key
+
+- lineinfile: >
+    dest="{{ sshd_config }}"
+    state=present
+    regexp="^(\s*HostKey\s+{{ item }}.*)$"
+    line="#\1"
+    backrefs=yes
+  notify: restart ssh
+  with_items: [ "/etc/ssh/ssh_host_ecdsa_key", "/etc/ssh/ssh_host_dsa_key" ]
+  #with_items: [ "/etc/ssh/ssh_host_ecdsa_key", "/etc/ssh/ssh_host_dsa_key", "/etc/ssh/ssh_host_ed25519_key" ]
+   
+- lineinfile: >
+    dest="{{ sshd_config }}"
+    state=present
+    owner=root
+    group=root
+    regexp="^{{ item.key }}\s+"
+    line="{{ item.key }} {{ item.value }}"
+  notify: restart ssh
+  with_dict: '{{ sshd_parameters }}'
+
+# http://docs.ansible.com/ansible/file_module.html
+# msg: mode needs to be something octalish
+#- file: >
+#    path="/etc/ssh"
+#    state=directory
+#    owner=root
+#    group=root
+#    recurse=yes
+#    mode=a-w
+
+- lineinfile: >
+    dest="{{ sshd_config }}"
+    state=present
+    owner=root
+    group=root
+    regexp="^Port\s+"
+    line="Port {{ sshd_port|default(22) }}"
+  notify: restart ssh
+
+- set_fact: >
+    ansible_ssh_port="{{ sshd_port }}"
+ 

@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo apt-get -qq -y update && sudo apt-get -q upgrade

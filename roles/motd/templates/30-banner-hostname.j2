@@ -1,0 +1,30 @@
+#!/bin/bash
+
+font="{{ motd_banner_font|default('roman.flf') }}"
+
+{% raw %}
+function centre() {
+	while IFS= read -r rawline
+	do
+        line="$(sed -r "s:\x1B\[[0-9;]*[mK]::g" <<< "$rawline")"
+        printf "%*s%s\n" "$(( (79 - ${#line}) / 2))" "" "$rawline"
+	done
+}
+{% endraw %}
+
+echo -e '[0;1;33;93m'
+{% if ansible_system_vendor == "Google" or "gay" in motd_banner_filter|default('') %}
+toilet -w 79 -f "$font" \
+	-F gay -F crop \
+	"{{ motd_banner|default(inventory_hostname_short) }}" | centre
+{% elif ".velocix.com" in ansible_fqdn or "metal" in banner_filter|default('') %}
+toilet -w 79 -f "$font" \
+	-F metal -F crop \
+	"{{ motd_banner|default(inventory_hostname_short) }}" | centre
+{% else %}
+figlet -w 79 -f "$font" \
+	-c \
+	"{% if motd_banner is defined %}{{ motd_banner }}{% else %}$(hostname -s){% endif %}" | sed -e '/^\s*$/d'
+{% endif %}
+echo -e '[0m'
+

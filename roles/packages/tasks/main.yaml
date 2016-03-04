@@ -1,0 +1,30 @@
+---
+# file: roles/packages/tasks/main.yaml
+# vim:ft=ansible:
+
+- apt:
+    state: "latest"
+    name: "{{ item }}"
+    update_cache: "yes"
+    cache_valid_time: "7200"
+  with_items:
+    - molly-guard
+    - python-pip
+    - git
+    - sudo
+
+- apt:
+    pkg: "{{ item }}"
+    state: "latest"
+  with_items:
+    - python-usb
+    - python-setuptools
+  when: not ansible_system_vendor in [ 'Google' ]
+
+- apt:
+    state: "latest"
+    name: "{{ item }}"
+  with_items:
+    - open-vm-tools
+  when: ansible_virtualization_role == 'guest' and ansible_virtualization_type == 'VMware'
+

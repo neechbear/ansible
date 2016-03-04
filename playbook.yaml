@@ -1,0 +1,13 @@
+---
+# file: playbook.yaml
+# vim:ft=ansible:
+
+- name: "Include common playbook"
+  include: "common.yaml"
+
+- name: "Include nameservers playbook"
+  include: "nameservers.yaml"
+
+- name: "Include TiddlyWiki playbook"
+  include: "tiddlywiki.yaml"
+

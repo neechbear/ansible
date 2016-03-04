@@ -1,0 +1,7 @@
+---
+# file: roles/tiddlywiki/handlrs/main.yaml
+# vim:ft=ansible:
+
+- name: restart apache2
+  service: name=apache2 state=restarted
+

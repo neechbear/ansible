@@ -1,0 +1,11 @@
+---
+# file: roles/nameserver/meta/main.yaml
+# vim:ft=ansible:
+
+dependencies:
+  - role: ufw
+    tags: [ 'firewall', 'ufw' ]
+    ufw_rules:
+      - { to_port: 53, proto: 'tcp', rule: 'allow' }
+      - { to_port: 53, proto: 'udp', rule: 'allow' }
+

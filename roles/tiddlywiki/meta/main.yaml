@@ -1,0 +1,9 @@
+---
+# file: roles/tiddlywiki/meta/main.yaml
+# vim:ft=ansible:
+
+dependencies:
+  - role: ufw
+    ufw_rules:
+      - { to_port: 443, proto: 'tcp', rule: 'allow' }
+

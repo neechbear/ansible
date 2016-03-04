@@ -1,0 +1,19 @@
+---
+# tasks file for dj-wasabi.zabbix-proxy
+
+- name: "Install the correct repository"
+  include: "RedHat.yml"
+  when: ansible_os_family == "RedHat"
+
+- name: "Install the correct repository"
+  include: "Debian.yml"
+  when: ansible_os_family == "Debian"
+
+- name: "Configure zabbix-proxy"
+  template: src=zabbix_java_gateway.conf.j2 
+            dest=/etc/zabbix/zabbix_java_gateway.conf
+            owner=zabbix 
+            group=zabbix
+            mode=0755 
+  notify: zabbix-java-gateway restarted
+

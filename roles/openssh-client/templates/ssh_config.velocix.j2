@@ -1,0 +1,18 @@
+{% include "ssh_config.j2" %}
+
+Host *.velocix.com
+    User nworthington
+
+Host *.corp.velocix.com bacula fileserver hd01mlt hd01-mlt zeno
+    User root
+    ForwardAgent yes
+
+Host *.tfb.net 90.155.50.* 93.186.33.102 93.186.33.103
+    User nicolaw
+    Port 1009
+    ForwardAgent yes
+    IdentityFile /space2/ssh/%u/id_rsa
+    IdentityFile /space2/ssh/%u/id_ed25519
+    IdentityFile %h/.ssh/id_rsa
+    IdentityFile %h/.ssh/id_ed25519
+

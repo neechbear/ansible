@@ -1,0 +1,51 @@
+---
+# file: roles/unattended-updates/tasks/main.yaml
+# vim:ft=ansible:
+
+# https://help.ubuntu.com/lts/serverguide/automatic-updates.html
+
+- name: "Install unattended-upgraded package"
+  apt:
+    state: "latest"
+    name: "{{ item }}"
+    update_cache: "yes"
+    cache_valid_time: "7200"
+  with_items:
+    - unattended-upgrades
+    - apticron
+
+- name: "Define allowed origins"
+  lineinfile:
+    dest: '/etc/apt/apt.conf.d/50unattended-upgrades'
+    regexp: '^\s*//(\s+"${distro_id}:${distro_codename}-{{ item }}";)'
+    backrefs: 'yes'
+    line: '\1'
+    state: 'present'
+  with_items:
+    - security
+    - updates
+    - backports
+
+- name: "Define APT::Periodic configuration options"
+  lineinfile:
+    dest: '/etc/apt/apt.conf.d/10periodic'
+    regexp: '^\s*{{ item.option }} '
+    line: '{{ item.option }} "{{ item.value }}";'
+    state: 'present'
+    create: 'yes'
+    owner: 'root'
+    group: 'root'
+    mode: 0644
+  with_items:
+    - { option: 'APT::Periodic::Update-Package-Lists',          value: 1 }
+    - { option: 'APT::Periodic::Download-Upgradeable-Packages', value: 1 }
+    - { option: 'APT::Periodic::AutocleanInterval',             value: 7 }
+    - { option: 'APT::Periodic::Unattended-Upgrade',            value: 1 }
+
+- name: "Define apticron notification emails"
+  lineinfile:
+    dest: '/etc/apticron/apticron.conf'
+    regexp: '^\s*#?\s*EMAIL='
+    line: 'EMAIL="nicolaw+apt@tfb.net"'
+    state: 'present'
+

@@ -1,0 +1,30 @@
+---
+# file: roles/custom-facts/tasks/main.yaml
+# vim:ft=ansible:
+
+- name: "Install fact gatherer dependencies"
+  apt:
+    state: "latest"
+    name: "{{ item }}"
+  with_items:
+    - libjson-perl
+    - libyaml-perl
+
+- name: "Create custom facts directory"
+  file: 
+    path: "/etc/ansible/facts.d"
+    recurse: "yes"
+    state: "directory"
+
+- name: "Install custom fact gatherers"
+  template:
+    src: "{{ item }}"
+    dest: "/etc/ansible/facts.d/{{ item|basename }}"
+    mode: 0755
+  register: install_facts
+  with_fileglob: "*.fact"
+
+- name: "Reload ansible_local facts"
+  setup: filter=ansible_local
+  when: install_facts.changed
+

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+play ~/ansible/nameservers.yaml --tags nameserver-role --skip-tags firewall
+
+sleep 3
+
+for zone in $( find ~/ansible/roles/nameserver/files/zones/ -name 'db.*' -printf '%f\n' | sed 's/^db\.//' | sort -u )
+do
+	SOA="$( dig +short -t NS $zone | sort -u | xargs -I{} dig +short -t SOA $zone @{} )"
+	if [ "$(uniq <<< "$SOA" | wc -l)" -gt 1 ]
+	then
+		paste	<(echo "FAIL") \
+			<(echo "$zone") \
+			<(dig +short -t NS $zone | sort -u) \
+			<(echo "$SOA")
+	else
+		echo "OK $zone $(uniq <<< "$SOA")"
+	fi
+done
+

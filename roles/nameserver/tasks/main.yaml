@@ -1,0 +1,82 @@
+---
+# file: roles/nameserver/tasks/main.yaml
+# vim:ft=ansible:
+
+- name: "Enumerate zone files"
+  local_action: command find {{ playbook_dir }}/roles/nameserver/files/zones/ -name 'db.*' -printf '%f\n'
+  register: nameserver_find_zone_files
+  changed_when: false
+
+- name: "Set zone files fact"
+  set_fact: nameserver_zones="{{ nameserver_find_zone_files.stdout_lines|list|map('replace', 'db.', '', 1)|list }}"
+
+# - debug: var=nameserver_zones
+
+- apt:
+    state: "latest"
+    name: "{{ item }}"
+  with_items:
+    - bind9
+    - bind9utils
+
+- file:
+    state: "directory"
+    path: "{{ nameserver_zone_directory }}"
+    mode: 0750
+    group: "bind"
+    owner: "root"
+
+- template:
+    src: "{{ item }}.j2"
+    dest: "/etc/bind/{{ item }}"
+    owner: "root"
+    group: "bind"
+    mode: 0640
+  with_items:
+    - named.conf.local
+    - named.conf.options
+    - zones.master
+    - zones.slave
+  notify: bind9 restarted
+
+- copy:
+    src: "zones/db.{{ item }}"
+    dest: "{{ nameserver_zone_directory }}/db.{{ item }}"
+    mode: 0640
+    owner: "root"
+    group: "bind"
+  with_items: '{{ nameserver_zones }}'
+  when: nameserver_type == "master"
+  register: zone_file_copy
+  notify: bind9 restarted
+
+- set_fact:
+    updated_zone_files: "{{zone_file_copy.results|selectattr('changed', 'equalto', true)|map(attribute='item')|map('basename')|map('replace', 'db.', '', 1)|list}}"
+  when: nameserver_type == "master"
+- set_fact:
+    updated_zone_files: "{{ ((hostvars[nameserver_master_ansible_inventory_host]|default({}))['updated_zone_files'])|default([]) }}"
+  when: not nameserver_type == "master"
+
+- debug: var=updated_zone_files
+  when: nameserver_type == "master" or nameserver_type == "slave"
+
+- shell: >
+    for zone in {{ updated_zone_files|join(' ') }} ; do rndc refresh $zone ; done
+  when: nameserver_type == "slave" and updated_zone_files is defined and updated_zone_files|length >= 1
+
+#- synchronize:
+#    src: "zones/"
+#    dest: "{{ nameserver_zone_directory }}/"
+#    links: "yes"
+#    mode: "push"
+#    rsync_path: "sudo rsync"
+#  become: no
+#  when: nameserver_type == "master"
+
+#- file:
+#    path: "{{ nameserver_zone_directory }}"
+#    recurse: "yes"
+#    mode: "u+rw,g-w,o-rwx"
+#    owner: "root"
+#    group: "bind"
+

@@ -1,0 +1,65 @@
+options {
+	directory "/var/cache/bind";
+
+	dnssec-validation auto;
+	auth-nxdomain no;    # conform to RFC1035
+
+	listen-on-v6 { any; };
+
+{% if nameserver_query_source is defined %}
+	query-source address {{ nameserver_query_source }};
+{% endif %}
+{% if nameserver_query_source_v6 is defined %}
+	query-source-v6 address {{ nameserver_query_source_v6 }};
+{% endif %}
+
+        allow-transfer  {
+                "trusted_hosts";
+                "slave_hosts";
+        };
+        allow-recursion {
+                "trusted_hosts";
+                "slave_hosts";
+        };
+{% if nameserver_type == 'master' %}
+        also-notify {
+{% for host in nameserver_acl_slaves %}
+                {{ host }};
+{% endfor %}
+        };
+{% endif %}
+};
+
+logging {
+    channel security_file {
+        file "{{ nameserver_log_directory }}/security.log" versions 3 size 30m;
+        severity dynamic;
+        print-time yes;
+    };
+    category security {
+        security_file;
+    };
+    channel query_file {
+        file "{{ nameserver_log_directory }}/query.log" versions 3 size 1m;
+        severity dynamic;
+        print-time yes;
+    };
+    category queries {
+        query_file;
+    };
+};
+
+acl "slave_hosts" {
+{% for host in nameserver_acl_slaves %}
+                {{ host }};
+{% endfor %}
+};
+
+acl "trusted_hosts" {
+        localnets;
+        localhost;
+{% for host in nameserver_acl_trusted %}
+        {{ host }};
+{% endfor %}
+};
+
