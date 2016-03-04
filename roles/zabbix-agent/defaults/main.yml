@@ -10,7 +10,7 @@ agent_serveractive: 90.155.50.213
 zabbix_api_use: True
 zabbix_url: "https://bran.mlt.tfb.net/zabbix"
 zabbix_api_user: zabbix_api_user
-zabbix_api_pass: 5fa4afdca27dbe2df6cc32721278
+#zabbix_api_pass: examplepassword
 zabbix_create_hostgroup: present  # or absent
 zabbix_create_host: present       # or absent
 zabbix_host_status: enabled       # or disabled
