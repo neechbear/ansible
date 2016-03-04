@@ -1,0 +1,3 @@
+[submodule "roles/nameserver/files/zones"]
+	path = roles/nameserver/files/zones
+	url = git@github.com:neechbear/dns-zones.git
