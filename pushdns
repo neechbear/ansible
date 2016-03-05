@@ -1,8 +1,9 @@
 #!/bin/bash
 
-play ~/ansible/nameservers.yaml --tags nameserver-role --skip-tags firewall
-
-sleep 3
+if ! grep -wq -- "--test-only" <<< "$@" ; then
+	play ~/ansible/nameservers.yaml --tags nameserver-role --skip-tags firewall
+	sleep 3
+fi
 
 for zone in $( find ~/ansible/roles/nameserver/files/zones/ -name 'db.*' -printf '%f\n' | sed 's/^db\.//' | sort -u )
 do
