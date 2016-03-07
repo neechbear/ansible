@@ -11,7 +11,7 @@
         src: '{{ item }}'
         dest: '/tmp/junk.{{ item|basename }}'
       register: my_var1
-      with_fileglob: roles/nameserver/files/zones/db.nicolaw.*
+      with_fileglob: roles/nameserver/files/zones/db.{{ ansible_env.SUDO_USER }}.*
     - set_fact: my_var2="{{my_var1.results|selectattr('changed', 'equalto', true)|map(attribute='item')|map('basename')|map('replace', 'db.', '', 1)|list}}"
       when: inventory_hostname == 'bran.mlt'
     - set_fact: my_var3="{{ ((hostvars['bran.mlt']|default({}))['my_var2'])|default([]) }}"

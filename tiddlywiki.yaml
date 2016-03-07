@@ -28,8 +28,7 @@
       tw5_wiki_name: "tw5.mlt.tfb.net"
       tw5_virtual_host: "tw5.mlt.tfb.net"
       tw5_crypts:
-        - "nicolaw:$2y$05$8IbqbYjSwrvPNou0djg7Auf3csweLliDTYzp0h9k3AvebG4LhZKd6"
-        - "jen:$2y$05$8IbqbYjSwrvPNou0djg7Auf3csweLliDTYzp0h9k3AvebG4LhZKd6"
+        - "{{ ansible_env.SUDO_USER }}:$2y$05$8IbqbYjSwrvPNou0djg7Auf3csweLliDTYzp0h9k3AvebG4LhZKd6"
       tw5_cert_filename: "/etc/ssl/certs/tw5.mlt.tfb.net.crt"
       tw5_key_filename: "/etc/ssl/private/tw5.mlt.tfb.net.key"
 

@@ -1,5 +1,14 @@
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ manage\.py: \[freeadmin.navtree:[0-9]+\] Plugin (sickrage|firefly) requested to be appended to plugins$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /usr/sbin/cron\[[0-9]+\]: \(root\) CMD \(/etc/ix.rc.d/ix-kinit renew > /dev/null 2>&1\)$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ smbd\[[0-9]+\]:   STATUS=daemon 'smbd' finished starting up and ready to serve connectionsNo protocol supported !$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[0-9]+\]: Accepted publickey for nicolaw from 90\.155\.50\.2[0-9]{2} port [0-9]+ ssh2: RSA e6:d6:1e:d6:bd:79:a1:6f:87:3d:fd:1c:d2:e7:df:2b$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ afpd\[[0-9]+\]: Login by nicolaw \(AFP3\.4\)$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ afpd\[[0-9]+\]: AFP logout by nicolaw$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ afpd\[[0-9]+\]: AFP statistics: [0-9\.]+ [KMGT]B read, [0-9\.]+ [KMGT]B written$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ afpd\[[0-9]+\]: done$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ manage\.py: \[common.cmd:[0-9]+\] cmd_pipe\.__init__: out = .*$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ syslog-ng\[[0-9]+\]: Log statistics; processed=.*$
-^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ alert\.py: \[middleware\.notifier:[0-9]+\] Popen\(\)ing: zpool get -H -o value version (jails|pool[0-0]|archive)$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ alert\.py: \[middleware\.notifier:[0-9]+\] Popen\(\)ing: zpool get -H -o value version (jails|pool[0-9]|archive)$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /usr/sbin/cron\[[0-9]+\]: \(operator\) CMD \(/usr/libexec/save-entropy > /dev/null 2>&1\)$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /usr/sbin/cron\[[0-9]+\]: \(root\) CMD \(adjkerntz -a > /dev/null 2>&1\)$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /usr/sbin/cron\[[0-9]+\]: \(root\) CMD \(/bin/sh /usr/local/sbin/save_rrds.sh > /dev/null 2>&1\)$
@@ -10,3 +19,9 @@
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /usr/sbin/cron\[[0-9]+\]: \(root\) CMD \(/usr/local/bin/python /usr/local/bin/mfistatus\.py > /dev/null 2>&1\)$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /usr/sbin/cron\[[0-9]+\]: \(root\) CMD \(/usr/local/bin/python /usr/local/www/freenasUI/tools/alert\.py > /dev/null 2>&1\)$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /usr/sbin/cron\[[0-9]+\]: \(root\) CMD \(/usr/local/bin/python /usr/local/www/freenasUI/tools/autosnap\.py > /dev/null 2>&1\)$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ autosnap\.py: \[tools.autosnap:[0-9]+\] Checking if process [0-9]+ is still alive$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ autosnap\.py: \[tools.autosnap:[0-9]+\] Process [0-9]+ still working, quitting$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ autosnap\.py: \[tools.autosnap:[0-9]+\] Autorepl running, skip destroying snapshots$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ autorepl\.py: \[tools.autorepl:[0-9]+\] Checking if process [0-9]+ is still alive$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ autorepl\.py: \[tools.autorepl:[0-9]+\] Process [0-9]+ still working, quitting$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ autosnap\.py: \[tools.autosnap:[0-9]+\] Popen\(\)ing: /sbin/zfs list -t snapshot -H -o name$
