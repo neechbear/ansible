@@ -1,0 +1,1 @@
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ transmission-daemon\[[0-9]+\]: Couldn't connect socket [0-9]+ to [0-9\.]{7,15}, port [0-9]+ \(errno [0-9]+ - Connection refused\) \(net\.c:[0-9]+\)$
