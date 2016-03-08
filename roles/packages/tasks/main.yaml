@@ -12,6 +12,7 @@
     - python-pip
     - git
     - sudo
+    - vim-nox
 
 - apt:
     pkg: "{{ item }}"

@@ -22,6 +22,7 @@
   tags: [ 'security' ]
   roles:
     - role: 'unattended-updates'
+      tags: [ 'updates', 'unattended-updates' ]
     - role: 'openssh-server'
       tags: [ 'openssh-server' ]
     - role: 'openssh-client'

@@ -12,12 +12,13 @@
     cache_valid_time: "7200"
   with_items:
     - unattended-upgrades
+    - update-notifier-common
     - apticron
 
-- name: "Define allowed origins"
+- name: "Define Unattended-Upgrade::Allowed-Origins in apt.conf.d/50unattended-upgrades"
   lineinfile:
     dest: '/etc/apt/apt.conf.d/50unattended-upgrades'
-    regexp: '^\s*//(\s+"${distro_id}:${distro_codename}-{{ item }}";)'
+    regexp: '^\s*//(\s+"\${distro_id}:\${distro_codename}-{{ item }}";)'
     backrefs: 'yes'
     line: '\1'
     state: 'present'
@@ -26,10 +27,31 @@
     - updates
     - backports
 
-- name: "Define APT::Periodic configuration options"
+- name: "Define Unattended-Upgrade:: configuration options in apt.conf.d/50unattended-upgrades"
+  lineinfile:
+    dest: '/etc/apt/apt.conf.d/50unattended-upgrades'
+    regexp: '^\s*(//\s*)?{{ item.option }} '
+    line: '{{ item.option }} "{{ item.value }}";'
+    state: 'present'
+    create: 'yes'
+    owner: 'root'
+    group: 'root'
+    mode: 0644
+  with_items:
+    - { option: 'Unattended-Upgrade::AutoFixInterruptedDpkg',     value: 'true' }
+    - { option: 'Unattended-Upgrade::MinimalSteps',               value: 'true' }
+    - { option: 'Unattended-Upgrade::InstallOnShutdown',          value: 'false' }
+    - { option: 'Unattended-Upgrade::Mail',                       value: '{{ global_notification_email_address }}' }
+    - { option: 'Unattended-Upgrade::MailOnlyOnError',            value: 'false' }
+    - { option: 'Unattended-Upgrade::Remove-Unused-Dependencies', value: 'true' }
+    - { option: 'Unattended-Upgrade::Automatic-Reboot',           value: 'false' }
+    - { option: 'Unattended-Upgrade::Automatic-Reboot-Time',      value: '19:00' }
+    - { option: 'Unattended-Upgrade::http::Dl-Limit',             value: '500' }
+
+- name: "Define APT::Periodic configuration options in apt.conf.d/10periodic"
   lineinfile:
     dest: '/etc/apt/apt.conf.d/10periodic'
-    regexp: '^\s*{{ item.option }} '
+    regexp: '^\s*(//\s*)?{{ item.option }} '
     line: '{{ item.option }} "{{ item.value }}";'
     state: 'present'
     create: 'yes'

@@ -1,0 +1,4 @@
+
+# Where to send notifications to for all sorts of things.
+global_notification_email_address: 'nicolaw@tfb.net'
+
