@@ -18,6 +18,9 @@ can easily look at what I'm talking about).
 * Add aptug equivelent to push updates to all hosts
 * Add zabbix server to bran
 * Add snipeit to bran
+* Add tiger http://manpages.ubuntu.com/manpages/lucid/en/man8/tiger.8.html
+* Add chkrootkit
+* Add debsum checking
 
 ## External Resources
 
