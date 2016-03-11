@@ -13,6 +13,8 @@
     - git
     - sudo
     - vim-nox
+    - apparmor
+    - apparmor-profiles
 
 - apt:
     pkg: "{{ item }}"

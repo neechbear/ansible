@@ -1,0 +1,19 @@
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: all zones loaded$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: running$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: command channel listening on 127\.0\.0\.1#953$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: managed-keys-zone: journal file is out of date: removing journal file$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: managed-keys-zone: loaded serial [0-9]+$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: received control channel command 'stop -p'$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: shutting down: flushing changes$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: stopping command channel on 127\.0\.0\.1#953$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: no longer listening on [0-9\.]{7,15}#53$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: exiting$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: BIND 9 is maintained by Internet Systems Consortium,$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: Inc\. \(ISC\), a non-profit 501\(c\)\(3\) public-benefit$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: corporation.  Support and training for BIND 9 are$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: available at https://www\.isc\.org/support$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: ----------------------------------------------------$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: zone [a-z0-9\.-]+/IN: loaded serial (1|20[0-9]{8})$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: client (193\.178\.223\.25|193\.178\.223\.141|208\.72\.84\.24|93\.186\.33\.102)#[0-9]+: recieved notify for zone '[a-z0-9\.-]+'$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: zone [a-z0-9\.-]+/IN: refused notify from non-master: (193\.178\.223\.25|193\.178\.223\.141|208\.72\.84\.24|93\.186\.33\.102)#[0-9]+$
+

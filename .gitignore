@@ -1,3 +1,4 @@
 tmp/
 logs/
 group_vars/all
+*.retry

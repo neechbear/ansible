@@ -15,6 +15,7 @@ sshd_allowusers:
 sshd_parameters:
   # https://github.com/ansible/ansible/issues/14250
   #AuthenticationMethods: "publickey,password"
+  DebianBanner: "no"
   UseDNS: "no"
   UsePrivilegeSeparation: "sandbox"
   KexAlgorithms: "diffie-hellman-group-exchange-sha256"

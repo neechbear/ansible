@@ -20,6 +20,34 @@
 - name: harden
   hosts: tfb
   tags: [ 'security' ]
+  tasks:
+    - mount:
+        state: 'present'
+        src: 'tmpfs'
+        name: '/run/shm'
+        fstype: 'tmpfs'
+        opts: 'defaults,noexec,nosuid'
+        dump: '0'
+        passno: '0'
+      tags: [ 'tmpfs', 'shm' ]
+    - command: dpkg-statoverride --list /bin/su
+      register: su_statoverride
+      changed_when: false
+      failed_when: false
+      tags: [ 'sudo', 'su' ]
+    - command: dpkg-statoverride --update --add root sudo 4750 /bin/su
+      when: not su_statoverride.stdout == "root sudo 4750 /bin/su"
+      tags: [ 'sudo', 'su' ]
+    - sysctl:
+        state: 'present'
+        name: '{{ item.name }}'
+        value: '{{ item.value }}'
+        reload: 'yes'
+        sysctl_set: 'yes'
+        ignoreerrors: 'no'
+      with_items: '{{ sysctl_settings|default([]) }}'
+      when: sysctl_settings is defined
+      tags: [ 'sysctl', 'kernel', 'network' ]
   roles:
     - role: 'unattended-updates'
       tags: [ 'updates', 'unattended-updates' ]
@@ -30,8 +58,8 @@
     - role: 'fail2ban'
       tags: [ 'fail2ban' ]
       when: not ansible_system_vendor in [ 'Google' ]
-    - role: 'rkhunter'
-      tags: [ 'rkhunter' ]
+    - role: 'antivirus'
+      tags: [ 'antivirus' ]
       when: not ansible_system_vendor in [ 'Google' ]
     - role: 'logcheck'
       tags: [ 'logcheck' ]
