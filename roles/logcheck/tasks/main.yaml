@@ -13,13 +13,16 @@
 - name: "Configure some /etc/logcheck/logcheck.conf settings"
   lineinfile:
     dest: '/etc/logcheck/logcheck.conf'
-    regexp: '^\s*#(\s+{{ item.option }}\s*)=\s*'
-    backrefs: 'yes'
-    line: '\1{{ item.value }}'
+    regexp: '^\s*#?\s*{{ item.option }}\s*=\s*'
+    line: '{{ item.option }}="{{ item.value }}"'
     state: 'present'
   with_items:
-    - { option: 'FQDN',       value: 0 }
-    - { option: 'SENDMAILTO', value: '{{ global_notification_email_address }}' }
+    - { option: 'FQDN',         value: 0 }
+    - { option: 'SENDMAILTO',   value: '{{ global_notification_email_address }}' }
+    - { option: 'INTRO',        value: 0 }
+    - { option: 'REPORTLEVEL',  value: 'server' }
+    - { option: 'MAILASATTACH', value: '0' }
+    - { option: 'ADDTAG',       value: 'yes' }
 
 - copy:
     src: '{{ item }}'
