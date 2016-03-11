@@ -10,6 +10,17 @@
     - logcheck
     - logcheck-database
 
+- name: "Configure some /etc/logcheck/logcheck.conf settings"
+  lineinfile:
+    dest: '/etc/logcheck/logcheck.conf'
+    regexp: '^\s*#(\s+{{ item.option }}\s*)=\s*'
+    backrefs: 'yes'
+    line: '\1{{ item.value }}'
+    state: 'present'
+  with_items:
+    - { option: 'FQDN',       value: 0 }
+    - { option: 'SENDMAILTO', value: '{{ global_notification_email_address }}' }
+
 - copy:
     src: '{{ item }}'
     dest: '/etc/logcheck/ignore.d.server/{{ item|basename }}'
