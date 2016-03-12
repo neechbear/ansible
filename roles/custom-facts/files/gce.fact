@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -f /usr/share/google/get_metadata_value ] && \
+   [ -x /usr/share/google/get_metadata_value ] ; then
+	/usr/share/google/get_metadata_value "?recursive=true" 2>/devlnull
+else
+	echo "{}"
+fi
+

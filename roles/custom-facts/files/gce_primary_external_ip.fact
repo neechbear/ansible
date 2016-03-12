@@ -1,0 +1,23 @@
+#!/bin/bash
+
+GMDV="/usr/share/google/get_metadata_value"
+
+if [ -f "$GMDV" ] && [ -x "$GMDV" ]
+then
+    for net in $("$GMDV" "network-interfaces/")
+    do
+        for iface in $("$GMDV" "network-interfaces/$net/access-configs/")
+        do
+            external_ip="$("$GMDV" "network-interfaces/$net/access-configs/$iface/external-ip")"
+            if [ -n "$external_ip" ] && \
+               [ "$("$GMDV" "network-interfaces/$net/access-configs/$iface/type")" == "ONE_TO_ONE_NAT" ]
+            then
+                echo "\"$external_ip\""
+                exit 0
+	    fi
+        done
+    done
+fi
+
+echo "null"
+
