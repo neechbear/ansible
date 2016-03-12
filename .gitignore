@@ -1,4 +1,5 @@
 tmp/
 logs/
 group_vars/all
+facts.d/
 *.retry
