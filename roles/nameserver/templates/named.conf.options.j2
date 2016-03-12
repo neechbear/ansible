@@ -53,15 +53,18 @@ logging {
 
 acl "slave_hosts" {
 {% for host in nameserver_acl_slaves %}
-                {{ host }};
+    {{ host }};
 {% endfor %}
 };
 
 acl "trusted_hosts" {
-        localnets;
-        localhost;
+    localnets;
+    localhost;
+    10.1.4.0/24;
+    10.1.5.0/29;
+    10.240.149.112/32;
 {% for host in nameserver_acl_trusted %}
-        {{ host }};
+    {{ host }};
 {% endfor %}
 };
 
