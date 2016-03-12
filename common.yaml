@@ -4,7 +4,8 @@
 
 - hosts: all
   roles:
-    - custom-facts
+    - role: 'custom-facts'
+      tags: [ 'custom-facts', 'facts' ]
   tasks:
     - group_by: key=distribution_{{ ansible_distribution }}
     - group_by: key=os_{{ ansible_os_family }}
