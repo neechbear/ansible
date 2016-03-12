@@ -1,3 +1,5 @@
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: named\[[0-9]+\]: zone [0-9a-z\.-]+/IN: refresh: failure trying master 104\.155\.12\.187#53 \(source 0\.0\.0\.0#0\): operation canceled$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: validating @0x[0-9a-f]+: [0-9a-z\.-]+ A(AAA): no valid signature found$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: all zones loaded$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: running$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: command channel listening on 127\.0\.0\.1#953$
