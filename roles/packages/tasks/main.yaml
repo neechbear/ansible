@@ -15,6 +15,7 @@
     - vim-nox
     - apparmor
     - apparmor-profiles
+    - debsums
 
 - apt:
     pkg: "{{ item }}"
