@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+set -x
+mailq | grep '<>' | awk '{print $3}' | xargs exim -Mrm

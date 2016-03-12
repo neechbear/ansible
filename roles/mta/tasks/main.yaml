@@ -2,6 +2,7 @@
 # file: roles/mta/tasks/main.yaml
 # vim:ft=ansible:
 
+# sudo debconf-get-selections | perl -na -F"\t" -e 'next unless /^exim4/; chomp for @F; print "    - { pkg: \"$F[0]\", question: \"$F[1]\", vtype: \"$F[2]\", value: \"$F[3]\" }\n";'
 - name: "Configure MTA"
   debconf:
     name: "{{ item.pkg }}"
@@ -10,16 +11,22 @@
     value: "{{ item.value }}"
   notify:
     - reconfigure exim
+  register: mta_debconf
   with_items:
-   - { pkg: 'exim4-config', question: 'exim4/dc_eximconfig_configtype', vtype: 'select',  value: 'mail sent by smarthost; received via SMTP or fetchmail' }
-   - { pkg: 'exim4-config', question: 'exim4/hide_mailname',            vtype: 'boolean', value: 'true' }
-   - { pkg: 'exim4-config', question: 'exim4/dc_smarthost',             vtype: 'string',  value: "{{ smtp_smarthost }}" }
-   - { pkg: 'exim4-config', question: 'exim4/dc_other_hostnames',       vtype: 'string',  value: "{{ ansible_fqdn }}" }
-   - { pkg: 'exim4-config', question: 'exim4/mailname',                 vtype: 'string',  value: "{{ ansible_fqdn }}" }
-   - { pkg: 'exim4-config', question: 'exim4/dc_readhost',              vtype: 'string',  value: "{{ ansible_fqdn }}" }
-   - { pkg: 'postfix',      question: 'postfix/mailname',               vtype: 'string',  value: "{{ ansible_fqdn }}" }
-   - { pkg: 'postfix',      question: 'postfix/destinations',           vtype: 'string',  value: "{{ ansible_fqdn }}" }
-   - { pkg: 'postfix',      question: 'postfix/root_address',           vtype: 'string',  value: "nicolaw+{{ inventory_hostname_short }}@tfb.net" }
+    - { pkg: "exim4-config", question: "exim4/use_split_config",         vtype: "boolean", value: "true" }
+    - { pkg: "exim4-config", question: "exim4/dc_localdelivery",         vtype: "select",  value: "mbox format in /var/mail/" }
+    - { pkg: 'exim4-config', question: 'exim4/dc_eximconfig_configtype', vtype: 'select',  value: 'mail sent by smarthost; received via SMTP or fetchmail' }
+    - { pkg: 'exim4-config', question: 'exim4/hide_mailname',            vtype: 'boolean', value: 'false' }
+    - { pkg: 'exim4-config', question: 'exim4/dc_smarthost',             vtype: 'string',  value: "{{ smtp_smarthost }}" }
+    - { pkg: 'exim4-config', question: 'exim4/dc_other_hostnames',       vtype: 'string',  value: "{{ ansible_fqdn }}" }
+    - { pkg: 'exim4-config', question: 'exim4/mailname',                 vtype: 'string',  value: "{{ inventory_hostname_short }}.unroutable.tfb.net" }
+    - { pkg: 'exim4-config', question: 'exim4/dc_readhost',              vtype: 'string',  value: "{{ ansible_fqdn }}" }
+    - { pkg: "exim4-config", question: "exim4/dc_relay_nets",            vtype: "string",  value: "127.0.0.1/32 ; ::1" }
+    - { pkg: "exim4-config", question: "exim4/dc_minimaldns",            vtype: "boolean", value: "false" }
+    - { pkg: "exim4-config", question: "exim4/dc_postmaster",            vtype: "string",  value: "nicolaw+{{ inventory_hostname_short }}+postmaster@tfb.net" }
+    - { pkg: 'postfix',      question: 'postfix/mailname',               vtype: 'string',  value: "{{ inventory_hostname_short }}.unroutable.tfb.net }}" }
+    - { pkg: 'postfix',      question: 'postfix/destinations',           vtype: 'string',  value: "{{ ansible_fqdn }}" }
+    - { pkg: 'postfix',      question: 'postfix/root_address',           vtype: 'string',  value: "nicolaw+{{ inventory_hostname_short }}+postfix/root_address@tfb.net" }
 
 - name: "Install Exim4"
   apt:
@@ -27,6 +34,10 @@
     name: "{{ item }}"
   with_items:
     - exim4
+
+- name: "Run dpkg-reconfigure for exim4-config"
+  command: dpkg-reconfigure exim4-config -fnoninteractive
+  when: mta_debconf.changed
 
 - name: "Remove Postscript"
   apt:
@@ -46,15 +57,26 @@
     - reconfigure exim
   when: false
 
-- name: 'Update root mail alias'
+- name: 'Update mail alias'
   lineinfile:
     dest: '/etc/aliases'
-    regexp: '^root: '
-    line: "root: nicolaw+{{ inventory_hostname_short }}@tfb.net"
+    regexp: '^{{ item }}: '
+    line: "{{ item }}: nicolaw+{{ inventory_hostname_short }}+{{ item }}@tfb.net"
     state: present
     create: yes
     owner: root
     group: root
+  with_items:
+    - root
+    - postmaster
+    - hostmaster
+    - webmaster
+    - abuse
+    - logcheck
+    - fail2ban
+    - security
+    - secops
+    - nicolaw
   register: aliases
 
 - name: 'Refresh mail aliases database'

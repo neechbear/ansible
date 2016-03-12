@@ -18,6 +18,24 @@
   roles:
     - motd
 
+- name: common
+  hosts: tfb
+  tags: [ 'common' ]
+  tasks:
+    - lineinfile:
+        dest: '/etc/hosts'
+        regexp: '^127\.0\.1\.1\s+'
+        state: 'absent'
+  roles:
+    - role: 'mta'
+      tags: [ 'mail', 'mta' ]
+    - role: 'packages'
+      tags: [ 'packages' ]
+    - role: 'scripts'
+      tags: [ 'scripts' ]
+    - role: 'zabbix-agent'
+      tags: [ 'zabbix', 'zabbix-agent', 'monitoring' ]
+
 - name: harden
   hosts: tfb
   tags: [ 'security' ]
@@ -65,13 +83,4 @@
     - role: 'logcheck'
       tags: [ 'logcheck' ]
       when: not ansible_system_vendor in [ 'Google' ]
-
-- name: common
-  hosts: tfb
-  tags: [ 'common' ]
-  roles:
-    - mta
-    - packages
-    - scripts
-    - zabbix-agent
 
