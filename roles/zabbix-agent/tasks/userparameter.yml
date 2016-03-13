@@ -1,10 +1,12 @@
 ---
 
-- name: "Installing sample file"
-  copy: src=sample.conf
-        dest="{{ agent_include }}/mysql.conf"
-        owner=zabbix
-        group=zabbix
-        mode=0755
-  notify: "{{ zabbix_agent }} restarted"
+- name: "Install Zabbix agent include configuration files"
+  copy:
+    src: '{{ item }}'
+    dest: '{{ agent_include }}/{{ item|basename }}'
+    owner: 'zabbix'
+    group: 'zabbix'
+    mode: 0755
+  notify: '{{ zabbix_agent }} restarted'
+  with_fileglob: '*.conf'
 

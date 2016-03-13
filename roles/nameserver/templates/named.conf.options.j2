@@ -32,6 +32,12 @@ options {
 {% endif %}
 };
 
+statistics-channels {
+    inet 127.0.0.1 port 153 allow {
+        127.0.0.1;
+    };
+};
+
 logging {
     channel security_file {
         file "{{ nameserver_log_directory }}/security.log" versions 3 size 30m;

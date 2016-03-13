@@ -16,6 +16,8 @@
     - apparmor
     - apparmor-profiles
     - debsums
+    - xml2
+    - curl
 
 - apt:
     pkg: "{{ item }}"

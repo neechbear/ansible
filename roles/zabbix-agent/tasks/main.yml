@@ -26,6 +26,8 @@
         group=zabbix 
         state=directory
 
+- include: "userparameter.yml"
+
 - name: "Install Zabbix Python APIs"
   pip: name={{ item }}
   with_items:
