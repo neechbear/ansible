@@ -33,7 +33,7 @@
 - name: "Add kernel usbhid.quirks command line fix"
   lineinfile:
     dest: "/etc/default/grub"
-    regexp: '^(GRUB_CMDLINE_LINUX_DEFAULT="[^"]+)"'
+    regexp: '^(GRUB_CMDLINE_LINUX_DEFAULT="quiet splash)"'
     line: '\1 usbhid.quirks=0x0c45:0x7401:0x4"'
     backrefs: "yes"
     backup: "yes"
