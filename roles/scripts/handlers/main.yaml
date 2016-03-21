@@ -1,7 +1,0 @@
----
-
-- name: restart udev
-  service:
-    name: "udev"
-    state: "restarted"
-
