@@ -1,0 +1,42 @@
+---
+# file: roles/temper-usb/tasks/main.yaml
+# vim:ft=ansible:
+
+# http://verahill.blogspot.co.uk/2013/12/532-temper-temperature-monitoring-usb.html
+- copy:
+    src: "80-temper.rules"
+    dest: "/etc/udev/rules.d/80-temper.rules"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  notify: restart udev
+  #when: "'.mlt.tfb.net' in ansible_fqdn"
+
+# https://pypi.python.org/pypi/temperusb/1.1.2
+# https://github.com/padelt/temper-python
+- name: "Install Python module dependencies"
+  pip:
+    name: "{{ item.name }}"
+    version: "{{ item.version }}"
+  with_items:
+    - { name: "temperusb", version: "1.2.3" }
+
+- name: "Install temperature wrapper script"
+  copy:
+    src: "temperature"
+    dest: "/usr/local/bin/temperature"
+    mode: 0755
+    owner: "root"
+    group: "root"
+
+# https://wiki.ubuntu.com/Kernel/KernelBootParameters
+- name: "Add kernel usbhid.quirks command line fix"
+  lineinfile:
+    dest: "/etc/default/grub"
+    regexp: '^(GRUB_CMDLINE_LINUX_DEFAULT="[^"]+)"'
+    line: '\1 usbhid.quirks=0x0c45:0x7401:0x4"'
+    backrefs: "yes"
+    backup: "yes"
+    state: "present"
+  notify: update-grub
+

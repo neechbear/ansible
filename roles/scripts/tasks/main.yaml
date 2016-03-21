@@ -2,31 +2,6 @@
 # file: roles/scripts/tasks/main.yaml
 # vim:ft=ansible:
 
-#sudo easy_install snmp-passpersist
-#mkdir ~/tmp
-#cd ~/tmp
-#git clone git://github.com/padelt/temper-python.git
-#cd temper-python/
-#sudo python setup.py install
-
-# http://verahill.blogspot.co.uk/2013/12/532-temper-temperature-monitoring-usb.html
-- copy:
-    src: "80-temper.rules"
-    dest: "/etc/udev/rules.d/80-temper.rules"
-    owner: "root"
-    group: "root"
-    mode: 0644
-  when: "'.mlt.tfb.net' in ansible_fqdn"
-  notify: restart udev
-
-# https://pypi.python.org/pypi/temperusb/1.1.2
-# https://github.com/padelt/temper-python
-- name: "Install Python module dependencies"
-  pip:
-    name: "{{ item }}"
-  with_items:
-    - temperusb
-
 - name: "Copy common scripts to /usr/local/bin/"
   synchronize:
     src: "usr-local-bin/"

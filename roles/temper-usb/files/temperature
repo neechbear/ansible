@@ -1,0 +1,59 @@
+#!/bin/bash
+
+umask 000
+
+PROG="${0##*/}"
+PIDFILE="/tmp/$PROG.pid"
+POLLCMD="/usr/local/bin/temper-poll -q -c"
+#POLLCMD="/usr/local/bin/temper-poll -c"
+CACHEFILE="/tmp/$PROG.cache"
+MAXAGE=55
+LINENUM=1
+
+function update_cache() {
+	$POLLCMD > "$CACHEFILE.tmp" 2>/dev/null
+	mv "$CACHEFILE.tmp" "$CACHEFILE" >/dev/null 2>&1 || rm -f "$CACHEFILE.tmp"
+}
+
+if [ $# == 1 ] && [[ "$1" =~ ^[1-9]$ ]] ; then
+	LINENUM="$1"
+fi
+
+if [ -e "$PIDFILE" ] ; then
+    OTHERPID="$(head -n 1 "$PIDFILE")"
+    if [ "$?" != "0" ] ; then
+      echo "Lock failed; failed to read PID file '$PIDFILE'." >&2
+      exit 3
+    fi
+    if [ -n "$OTHERPID" ] ; then
+        if [ -d "/proc/$OTHERPID" ] ; then
+            #echo "Lock failed; PID $OTHERPID is active." >&2
+            #exit 3
+	    sleep 6
+        else
+            #echo "Removing stale lock of non-existant PID $OTHERPID." >&2
+            rm -f "$PIDFILE"
+            unset OTHERPID
+        fi
+    fi
+fi
+
+if [ -z "$OTHERPID" ] ; then
+	trap "rm -f \"$PIDFILE\"" EXIT
+	echo "$$" > "$PIDFILE"
+	trap 'echo "Killed by a signal." >&2; exit 4' SIGHUP SIGINT SIGQUIT SIGTERM
+fi
+
+NOW="$(date +%s)"
+MODTIME=0
+if [ -e "$CACHEFILE" ] ; then
+	MODTIME="$(stat -c %Y "$CACHEFILE")" 
+fi
+
+if [[ "$(($NOW - $MODTIME))" -gt "$MAXAGE" ]] ; then
+	update_cache
+fi
+
+sed "${LINENUM}q;d" "$CACHEFILE"
+
+

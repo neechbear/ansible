@@ -1,0 +1,10 @@
+---
+
+- name: restart udev
+  service:
+    name: "udev"
+    state: "restarted"
+
+- name: update-grub
+  command: "update-grub"
+
