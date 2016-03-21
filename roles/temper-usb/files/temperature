@@ -2,58 +2,94 @@
 
 umask 000
 
-PROG="${0##*/}"
-PIDFILE="/tmp/$PROG.pid"
-POLLCMD="/usr/local/bin/temper-poll -q -c"
+# Newer versions of temper-poll do not support -q for quiet operation.
 #POLLCMD="/usr/local/bin/temper-poll -c"
+POLLCMD="/usr/local/bin/temper-poll -q -c"
+
+PROG="${0##*/}"
+LOCKDIR="/tmp/$PROG"
+PIDFILE="$LOCKDIR/$PROG.pid"
 CACHEFILE="/tmp/$PROG.cache"
 MAXAGE=55
 LINENUM=1
+RETRYSECS=8
 
+# Find out what line number (temperature sensor) we want to report.
+if [ $# == 1 ] && [[ "$1" =~ ^[1-9]$ ]] ; then
+    LINENUM="$1"
+fi
+
+# Update the cache file by running the temperature poller command.
 function update_cache() {
-	$POLLCMD > "$CACHEFILE.tmp" 2>/dev/null
-	mv "$CACHEFILE.tmp" "$CACHEFILE" >/dev/null 2>&1 || rm -f "$CACHEFILE.tmp"
+    $POLLCMD > "$CACHEFILE.tmp" 2>/dev/null
+    mv "$CACHEFILE.tmp" "$CACHEFILE" >/dev/null 2>&1 || rm -f "$CACHEFILE.tmp"
 }
 
-if [ $# == 1 ] && [[ "$1" =~ ^[1-9]$ ]] ; then
-	LINENUM="$1"
-fi
+# Try and get a process lock.
+function get_process_lock() {
+    local LOCKDIR="$1"
+    local PIDFILE="$2"
 
-if [ -e "$PIDFILE" ] ; then
-    OTHERPID="$(head -n 1 "$PIDFILE")"
-    if [ "$?" != "0" ] ; then
-      echo "Lock failed; failed to read PID file '$PIDFILE'." >&2
-      exit 3
-    fi
-    if [ -n "$OTHERPID" ] ; then
-        if [ -d "/proc/$OTHERPID" ] ; then
-            #echo "Lock failed; PID $OTHERPID is active." >&2
-            #exit 3
-	    sleep 6
-        else
-            #echo "Removing stale lock of non-existant PID $OTHERPID." >&2
-            rm -f "$PIDFILE"
-            unset OTHERPID
+    if [ -e "$PIDFILE" ] ; then
+        local OTHERPID="$(head -n 1 "$PIDFILE")"
+        if [ "$?" != "0" ] ; then
+            echo "Lock failed; failed to read PID file '$PIDFILE'." >&2
+            exit 3
+        fi
+        if [ -n "$OTHERPID" ] ; then
+            if [ -d "/proc/$OTHERPID" ] ; then
+		echo "$OTHERPID"
+                return 1
+            else
+                if ! rm -f "$LOCKDIR" ; then
+		    echo "Lock failed; unable to remove stale lock directory '$LOCKDIR'." >&2
+		    exit 3
+		fi
+                unset OTHERPID
+            fi
         fi
     fi
-fi
 
-if [ -z "$OTHERPID" ] ; then
-	trap "rm -f \"$PIDFILE\"" EXIT
+    if mkdir -p "$LOCKDIR" >/dev/null 2>&1 ; then
+	trap "rm -rf \"$LOCKDIR\"" EXIT
 	echo "$$" > "$PIDFILE"
 	trap 'echo "Killed by a signal." >&2; exit 4' SIGHUP SIGINT SIGQUIT SIGTERM
+	echo "$$"
+	return 0
+    fi
+
+    return 1
+}
+
+# Repeatedly try and get a process lock.
+NOW="$(date +%s)"
+while [[ "$((NOW + RETRYSECS))" -gt "$(date +%s)" ]] ; do
+    if LOCKPID="$(get_process_lock "$LOCKDIR" "$PIDFILE")" ; then
+        GOTLOCK=1
+	break
+    else
+        sleep 0.$(( RANDOM % 70 + 3))
+    fi
+done
+
+# Print error and exit if we failed to get a lock.
+if [ -z "$GOTLOCK" ] ; then
+    echo "Lock failed; locked by process ID $LOCKPID." >&2
+    exit 2
 fi
 
-NOW="$(date +%s)"
+# Get the last modification time of the cache tile.
 MODTIME=0
 if [ -e "$CACHEFILE" ] ; then
-	MODTIME="$(stat -c %Y "$CACHEFILE")" 
+    MODTIME="$(stat -c %Y "$CACHEFILE")" 
 fi
 
+# Refresh the cache file if it is out of date.
 if [[ "$(($NOW - $MODTIME))" -gt "$MAXAGE" ]] ; then
-	update_cache
+    update_cache
 fi
 
+# Print the output results from the cache file.
 sed "${LINENUM}q;d" "$CACHEFILE"
 
 
