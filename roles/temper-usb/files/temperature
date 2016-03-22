@@ -13,7 +13,7 @@ CACHEFILE="/tmp/$PROG.cache"
 MAXAGE=55
 LINENUM=1
 RETRYSECS=8
-CACHERETRY=3
+CACHERETRY=5
 
 # Find out what line number (temperature sensor) we want to report.
 if [ $# == 1 ] && [[ "$1" =~ ^[1-9]$ ]] ; then
@@ -100,7 +100,7 @@ if [[ "$(($NOW - $MODTIME))" -gt "$MAXAGE" ]] ; then
             echo "Failed to update cache file." >&2
 	    exit 5
 	fi
-	sleep 1
+	sleep 1.$(( RANDOM % 70 + 3))
     done
 fi
 
