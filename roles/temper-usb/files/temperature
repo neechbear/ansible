@@ -47,7 +47,7 @@ function get_process_lock() {
 		echo "$OTHERPID"
                 return 1
             else
-                if ! rm -f "$LOCKDIR" ; then
+                if ! rm -rf "$LOCKDIR" ; then
 		    echo "Lock failed; unable to remove stale lock directory '$LOCKDIR'." >&2
 		    exit 3
 		fi
@@ -57,9 +57,7 @@ function get_process_lock() {
     fi
 
     if mkdir -p "$LOCKDIR" >/dev/null 2>&1 ; then
-	trap "rm -rf \"$LOCKDIR\"" EXIT
 	echo "$$" > "$PIDFILE"
-	trap 'echo "Killed by a signal." >&2; exit 4' SIGHUP SIGINT SIGQUIT SIGTERM
 	echo "$$"
 	return 0
     fi
@@ -71,6 +69,8 @@ function get_process_lock() {
 NOW="$(date +%s)"
 while [[ "$((NOW + RETRYSECS))" -gt "$(date +%s)" ]] ; do
     if LOCKPID="$(get_process_lock "$LOCKDIR" "$PIDFILE")" ; then
+	trap "rm -rf \"$LOCKDIR\"" EXIT
+	trap 'echo "Killed by a signal." >&2; exit 4' SIGHUP SIGINT SIGQUIT SIGTERM
         GOTLOCK=1
 	break
     else
