@@ -3,7 +3,7 @@
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[0-9]+\]: Connection from 90\.155\.50\.2[0-9{2} port [0-9]+ on [0-9\.]{7,15} port 1009$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[0-9]+\]: Starting session: command for nicolaw from 90\.155\.50\.2[0-9]{2} port [0-9]+$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[0-9]+\]: Postponed publickey for nicolaw from 90\.155\.50\.2[0-9]{2} port [0-9]+ ssh2 \[preauth\]$
-^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[0-9]+\]: Accepted publickey for nicolaw from (2001:8b0:84c:717d:[0-9:]+|10\.1\.4\.[0-9]{3}) port 56615 ssh2: RSA e6:d6:1e:d6:bd:79:a1:6f:87:3d:fd:1c:d2:e7:df:2b$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[0-9]+\]: Accepted publickey for nicolaw from (2001:8b0:84c:717d:[0-9:]+|10\.1\.4\.[0-9]{3}) port [0-9]+ ssh2: RSA e6:d6:1e:d6:bd:79:a1:6f:87:3d:fd:1c:d2:e7:df:2b$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[0-9]+\]: Accepted publickey for nicolaw from 90\.155\.50\.2[0-9]{2} port [0-9]+ ssh2: RSA 89:5d:70:7b:67:8b:01:f2:4b:22:44:2e:c7:f1:aa:c4$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[0-9]+\]: Accepted publickey for nicolaw from 2001:8b0:84c:717d:[0-9:]+ port [0-9]+ ssh2: RSA 89:5d:70:7b:67:8b:01:f2:4b:22:44:2e:c7:f1:aa:c4$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[0-9]+\]: Accepted publickey for nicolaw from 81\.134\.152\.4 port [0-9]+ ssh2: RSA 0c:c0:02:b1:80:eb:1a:9c:4c:13:1d:f9:11:dc:a1:84$
