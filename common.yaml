@@ -70,7 +70,7 @@
         sysctl_set: 'yes'
         ignoreerrors: 'no'
       with_items: '{{ sysctl_settings|default([]) }}'
-      when: sysctl_settings is defined and not ansible_system_vendor in [ 'Google' ]
+      when: sysctl_settings is defined
       tags: [ 'sysctl', 'kernel', 'network' ]
   roles:
     - role: 'unattended-updates'
