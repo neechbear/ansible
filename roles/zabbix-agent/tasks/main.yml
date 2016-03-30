@@ -47,6 +47,13 @@
     state: "{{ zabbix_create_hostgroup }}"
   when: zabbix_api_use == True
 
+- name: "Determine host IP address for monitoring"
+  set_fact: zabbix_host_ip_address="{{ hostvars[inventory_hostname]['ansible_default_ipv4'].address }}"
+
+- name: "Determine host IP address for monitoring"
+  set_fact: zabbix_host_ip_address="{{ ansible_local.gce_primary_external_ip }}"
+  when: not ansible_local.gce_primary_external_ip|default('') == '' and ansible_system_vendor in [ 'Google' ]
+
 - name: "Create a new host or update an existing host's info"
   local_action:
     module: zabbix_host2
@@ -63,7 +70,7 @@
       - type: 1
         main: 1
         useip: "{{ zabbix_useuip }}"
-        ip: "{{ hostvars[inventory_hostname]['ansible_default_ipv4'].address }}"
+        ip: "{{ zabbix_host_ip_address }}"
         dns: "{{ ansible_fqdn }}"
         port: "{{ agent_listenport }}"
   when: zabbix_api_use == True
