@@ -1,5 +1,5 @@
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ \(".+"\) syslog: ace_reporter\.reporter_fail\(\): Unreachable \(http://(unifi|10\.1\.4\.[0-9]{3}):8080/inform\)$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ \(".+"\) syslog: ace_reporter\.reporter_fail\(\): Unable to resolve \(http://unifi:8080/inform\)$
-^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ \(".+"\) syslog: ace_reporter\.reporter_fail\(\): initial contact failed #[0-9]+, url=http://(unifi|10.\.1\.4\.[0-9]{3}):8080/inform, rc=[13]$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ \(".+"\) syslog: ace_reporter\.reporter_fail\(\): initial contact failed #[0-9]+, url=http://(unifi|10\.1\.4\.[0-9]{3}):8080/inform, rc=[13]$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ \(".+"\) syslog: ace_reporter\.reporter_next_inform_url\(\): next inform url\[[0-9]+\]=http://(unifi|10\.1\.4\.[0-9]{3}):8080/inform$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ \(".+"\) syslog: ace_reporter\.reporter_connected\(\): connect\(http://10\.1\.4\.[0-9]{3}:8080/inform\) failed with errors: [0-9]+ - No route to host$
