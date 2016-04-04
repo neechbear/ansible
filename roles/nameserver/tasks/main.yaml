@@ -26,6 +26,13 @@
     group: "bind"
     owner: "root"
 
+- file:
+    state: "directory"
+    path: "{{ nameserver_log_directory }}"
+    mode: 2750
+    group: "bind"
+    owner: "root"
+
 - template:
     src: "{{ item }}.j2"
     dest: "/etc/bind/{{ item }}"
