@@ -51,6 +51,11 @@
           address: '2001:8b0:84c:717d:90:155:50:214'
           netmask: '64'
           gateway: '2001:8b0:84c:717d::1'
+        - device: 'eth0:1918b'
+          bootproto: 'static'
+          address: '10.1.4.214'
+          netmask: '255.255.255.0'
+          gateway: '10.1.4.1'
     - role: nameserver
       nameserver_type: "slave"
       nameserver_query_source: '90.155.50.214'
@@ -64,4 +69,32 @@
     - role: nameserver
       nameserver_type: "slave"
       tags: [ 'nameserver-role', 'ns4.tfb.net' ]
+
+- name: ns5.tfb.net
+  hosts: sansa.mlt
+  tags: [ 'dns' ]
+  roles:
+    - role: network-interface
+      network_ether_interfaces:
+        - device: 'em1:222'
+          bootproto: 'static'
+          address: '90.155.50.222'
+          netmask: '255.255.255.240'
+          gateway: '90.155.50.209'
+        - device: 'em1:222v6'
+          netproto: 'inet6'
+          bootproto: 'static'
+          address: '2001:8b0:84c:717d:90:155:50:222'
+          netmask: '64'
+          gateway: '2001:8b0:84c:717d::1'
+        - device: 'em1:1918b'
+          bootproto: 'static'
+          address: '10.1.4.222'
+          netmask: '255.255.255.0'
+          gateway: '10.1.4.1'
+    - role: nameserver
+      nameserver_type: "slave"
+      nameserver_query_source: '90.155.50.222'
+      nameserver_query_source_v6: '2001:8b0:84c:717d:90:155:50:222'
+      tags: [ 'nameserver-role', 'ns5.tfb.net' ]
 
