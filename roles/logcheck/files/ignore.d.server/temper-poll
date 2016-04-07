@@ -1,12 +1,12 @@
-^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9\.]+\] hid-generic [0-9A-Fa-z:\.]+: input,hidraw[0-9]: USB HID v1.10 Keyboard \[RDing TEMPerV1\.4\] on usb-[0-9:\.-]+/input[0-9]+
-^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9\.]+\] usb [0-9]+-[0-9]+: usbfs: process [0-9]+ \(temper-poll\) did not claim interface [0-9]+ before use$
-^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9\.]+\] usb [0-9]+-[0-9]+: reset low-speed USB device number [0-9]+ using xhci_hcd
-^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9\.]+\] xhci_hcd 0000:00:14\.[0-9]+: xHCI xhci_drop_endpoint called with disabled ep [a-f0-9]+
-^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9\.]+\] usb [0-9]-[0-9]: ep 0x[0-9a-f]+ - rounding interval to [0-9]+ microframes, ep desc says [0-9]+ microframes
-^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9\.]+\] input: RDing TEMPerV1\.4 as /devices/pci0000:00/0000:00:14\.[0-9]+/usb[0-9]/[0-9]-[0-9]/[0-9]-[0-9]:[0-9\.]+/.*/input[0-9]+
-^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9\.]+\] usb [0-9]-[0-9]: USB disconnect, device number [0-9]+$
-^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9\.]+\] usb [0-9]-[0-9]: new low-speed USB device number [0-9]+ using xhci_hcd$
-^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9\.]+\] usb [0-9]-[0-9]: New USB device found, idVendor=0c45, idProduct=7401$
-^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9\.]+\] usb [0-9]-[0-9]: New USB device strings: Mfr=1, Product=2, SerialNumber=0$
-^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9\.]+\] usb [0-9]-[0-9]: Product: TEMPerV1\.4$
-^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9\.]+\] usb [0-9]-[0-9]: Manufacturer: RDing$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9\. ]+\] hid-generic [0-9A-Fa-z:\.]+: input,hidraw[0-9]: USB HID v1.10 Keyboard \[RDing TEMPerV1\.4\] on usb-[0-9:\.-]+/input[0-9]+
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9\. ]+\] usb [0-9]+-[0-9]+: usbfs: process [0-9]+ \(temper-poll\) did not claim interface [0-9]+ before use$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9\. ]+\] usb [0-9]+-[0-9]+: reset low-speed USB device number [0-9]+ using xhci_hcd
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9\. ]+\] xhci_hcd 0000:00:14\.[0-9]+: xHCI xhci_drop_endpoint called with disabled ep [a-f0-9]+
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9\. ]+\] usb [0-9]-[0-9]: ep 0x[0-9a-f]+ - rounding interval to [0-9]+ microframes, ep desc says [0-9]+ microframes
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9\. ]+\] input: RDing TEMPerV1\.4 as /devices/pci0000:00/0000:00:14\.[0-9]+/usb[0-9]/[0-9]-[0-9]/[0-9]-[0-9]:[0-9\.]+/.*/input[0-9]+
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9\. ]+\] usb [0-9]-[0-9]: USB disconnect, device number [0-9]+$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9\. ]+\] usb [0-9]-[0-9]: new low-speed USB device number [0-9]+ using xhci_hcd$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9\. ]+\] usb [0-9]-[0-9]: New USB device found, idVendor=0c45, idProduct=7401$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9\. ]+\] usb [0-9]-[0-9]: New USB device strings: Mfr=1, Product=2, SerialNumber=0$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9\. ]+\] usb [0-9]-[0-9]: Product: TEMPerV1\.4$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9\. ]+\] usb [0-9]-[0-9]: Manufacturer: RDing$
