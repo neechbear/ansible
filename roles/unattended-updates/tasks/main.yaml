@@ -42,10 +42,10 @@
     - { option: 'Unattended-Upgrade::MinimalSteps',               value: 'true' }
     - { option: 'Unattended-Upgrade::InstallOnShutdown',          value: 'false' }
     - { option: 'Unattended-Upgrade::Mail',                       value: '{{ global_notification_email_address }}' }
-    - { option: 'Unattended-Upgrade::MailOnlyOnError',            value: 'false' }
+    - { option: 'Unattended-Upgrade::MailOnlyOnError',            value: 'true' }
     - { option: 'Unattended-Upgrade::Remove-Unused-Dependencies', value: 'true' }
-    - { option: 'Unattended-Upgrade::Automatic-Reboot',           value: 'false' }
-    - { option: 'Unattended-Upgrade::Automatic-Reboot-Time',      value: '19:00' }
+    - { option: 'Unattended-Upgrade::Automatic-Reboot',           value: 'true' }
+    - { option: 'Unattended-Upgrade::Automatic-Reboot-Time',      value: '18:00' }
     - { option: 'Unattended-Upgrade::http::Dl-Limit',             value: '500' }
 
 - name: "Define APT::Periodic configuration options in apt.conf.d/10periodic"
