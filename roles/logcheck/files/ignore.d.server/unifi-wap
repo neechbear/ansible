@@ -4,6 +4,6 @@
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ \("[ ,\.[:alnum:]]+"\) syslog: ace_reporter\.reporter_next_inform_url\(\): next inform url\[[0-9]+\]=http://(unifi|10\.1\.4\.[0-9]{3}):8080/inform$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ \("[ ,\.[:alnum:]]+"\) syslog: ace_reporter\.reporter_connected\(\): connect\(http://10\.1\.4\.[0-9]{3}:8080/inform\) failed with errors: [0-9]+ - No route to host$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ \("[ ,\.[:alnum:]]+"\) hostapd: AP-STA-(DISCONNECTED|CONNECTED) [a-f0-9:]+$
-^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ \("[ ,\.[:alnum:]]+"\) hostapd: ath0: STA [a-f0-9:]+ RADIUS: starting accounting session [A-F0-9-]+$
-^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ \("[ ,\.[:alnum:]]+"\) hostapd: ath0: STA [a-f0-9:]+ IEEE 802.11: (associated|sta_stats|disassociated)$
-^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ \("[ ,\.[:alnum:]]+"\) hostapd: ath0: STA [a-f0-9:]+ WPA: pairwise key handshake completed \(RSN\)$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ \("[ ,\.[:alnum:]]+"\) hostapd: ath[01]: STA [a-f0-9:]+ RADIUS: starting accounting session [A-F0-9-]+$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ \("[ ,\.[:alnum:]]+"\) hostapd: ath[01]: STA [a-f0-9:]+ IEEE 802.11: (associated|sta_stats|disassociated)$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ \("[ ,\.[:alnum:]]+"\) hostapd: ath[01]: STA [a-f0-9:]+ WPA: pairwise key handshake completed \(RSN\)$
