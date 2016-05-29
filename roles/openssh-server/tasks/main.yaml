@@ -55,8 +55,8 @@
     line="#\1"
     backrefs=yes
   notify: restart ssh
-  with_items: [ "/etc/ssh/ssh_host_ecdsa_key", "/etc/ssh/ssh_host_dsa_key" ]
-  #with_items: [ "/etc/ssh/ssh_host_ecdsa_key", "/etc/ssh/ssh_host_dsa_key", "/etc/ssh/ssh_host_ed25519_key" ]
+  with_items: [ "/etc/ssh/ssh_host_ecdsa_key", "/etc/ssh/ssh_host_dsa_key", "/etc/ssh/ssh_host_ed25519_key" ]
+  #with_items: [ "/etc/ssh/ssh_host_ecdsa_key", "/etc/ssh/ssh_host_dsa_key" ]
    
 - lineinfile: >
     dest="{{ sshd_config }}"
