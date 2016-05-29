@@ -29,6 +29,7 @@
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: automatic empty zone: 8\.B\.D\.0\.1\.0\.0\.2\.IP6\.ARPA$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: command channel listening on ::1#953$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: zone localhost/IN: loaded serial 2$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: client (193\.178\.223\.25|193\.178\.223\.141|208\.72\.84\.24|93\.186\.33\.102)#[0-9]+ \([a-z0-9\.-]+\): transfer of '[a-z0-9\.-]+/IN': IXFR ended$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: transfer of '[a-z0-9\.-]+/IN' from 93\.186\.33\.98#53: connected using (193\.178\.223\.25|193\.178\.223\.141|208\.72\.84\.24|93\.186\.33\.102)#[0-9]+$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: transfer of '[a-z0-9\.-]+/IN' from 93\.186\.33\.98#53: Transfer completed: [0-9]+ messages, [0-9]+ records, [0-9\.]+ bytes, [0-9\.]+ secs \([0-9\.]+ bytes/sec\)$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: zone [a-z0-9\.-]+/IN: refresh: retry limit for master 93\.186\.33\.98#53 exceeded \(source 0\.0\.0\.0#0\)$
