@@ -20,8 +20,8 @@ tyrion.rbsov
 [gce]
 ns4.gce ansible_ssh_host=ns1.gce
 jorah.gce
-rootme.sh
-loaf.cat
+bets-pe.gce
+root-me.gce
 
 [cam]
 
