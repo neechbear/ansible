@@ -1,0 +1,4 @@
+#!/bin/bash
+
+"${0%/*}/play" "${0%/*}/common.yaml" --tags logcheck
+
