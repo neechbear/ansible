@@ -1,16 +1,14 @@
 [tfb:children]
 mlt
-cam
 rbsov
 gce
 
-[velocix]
-vxdesk ansible_ssh_host=10.1.4.213 ansible_ssh_port=3001 ansible_ssh_user=nworthington
+#[velocix]
+#vxdesk ansible_ssh_host=10.1.4.213 ansible_ssh_port=3001 ansible_ssh_user=nworthington
 
 [mlt]
 sansa.mlt
 bran.mlt
-#brienne.mlt
 #vm1.mlt ansible_ssh_host=10.1.4.190 motd_banner=vm1.mlt
 
 [rbsov]
@@ -22,6 +20,4 @@ ns4.gce ansible_ssh_host=ns1.gce
 jorah.gce
 bets-pe.gce
 root-me.gce
-
-[cam]
 
