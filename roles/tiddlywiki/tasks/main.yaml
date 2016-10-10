@@ -9,9 +9,9 @@
     tw5_passwd_file: "{{ tw5_passwd_file|default('/etc/apache2/tiddlywiki' ~ tw5_wiki_name|default('mywiki') ~ '.htpasswd') }}"
     tw5_user: "{{ tw5_user|default(ansible_env.SUDO_USER) }}"
 
-- apt: >
-    state=latest
-    name="{{ item }}"
+- apt:
+    state: "latest"
+    name: "{{ item }}"
   with_items:
     - nodejs
     - nodejs-legacy
@@ -32,12 +32,12 @@
     production=yes
 
 - name: "Install Apache site configuration file"
-  template: >
-    src="tiddlywiki.conf.j2"
-    dest="/etc/apache2/sites-available/tiddlywiki-{{ tw5_wiki_name }}.conf"
-    owner=root
-    group=root
-    mode=0644
+  template:
+    src: "tiddlywiki.conf.j2"
+    dest: "/etc/apache2/sites-available/tiddlywiki-{{ tw5_wiki_name }}.conf"
+    owner: "root"
+    group: "www-data"
+    mode: "0640"
   notify: restart apache2
 
 - name: "Add username and password to Apache htpasswd file"
@@ -54,6 +54,10 @@
   lineinfile:
     dest: "{{ tw5_passwd_file }}"
     state: "present"
+    create: "yes"
+    group: "root"
+    owner: "www-data"
+    mode: "0640"
     line: "{{ item }}"
   with_items: '{{ tw5_crypts }}'
   when: tw5_crypts is defined
@@ -100,6 +104,10 @@
     pgrep -u '{{ ansible_env.SUDO_USER }}' -f '^node .* {{ tw5_wiki_name }} .*server'
   register: nodejs_pid
   changed_when: false
+  failed_when: nodejs_pid.stderr|length|bool
+
+- debug:
+    var: nodejs_pid
 
 # Find out how to run the nodejs tiddlywiki server process as a background
 # daemon, instead of running it inside of a GNU Screen session.
@@ -113,6 +121,6 @@
   args:
     chdir: "{{ tw5_base_path }}"
   become: no
-  when: not nodejs_pid is defined
+  when: not nodejs_pid.stdout|length|bool
 
 
