@@ -3,6 +3,14 @@
 # vim:ft=ansible:
 
 # sudo debconf-get-selections | perl -na -F"\t" -e 'next unless /^exim4/; chomp for @F; print "    - { pkg: \"$F[0]\", question: \"$F[1]\", vtype: \"$F[2]\", value: \"$F[3]\" }\n";'
+
+# TODO(2016-07-29): exim4/dc_other_hostname, exim4/mailname, exim4/dc_readhost,
+#     exim4/dc_smarthost and exim4/dc_relay_nets always show up as changed no
+#     matter what. Also, this is only useful for setting BEFORE the package has
+#     been installed and configured. I need to replace this with the new version
+#     devised by salikov which is less crack-fuelled and will actually make
+#     changed AFTER package installation!
+
 - name: "Configure MTA"
   debconf:
     name: "{{ item.pkg }}"
