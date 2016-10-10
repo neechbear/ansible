@@ -1,2 +1,3 @@
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ transmission-daemon\[[0-9]+\]: Couldn't connect socket [0-9]+ to [0-9\.]{7,15}, port [0-9]+ \(errno [0-9]+ - Connection refused\) \(net\.c:[0-9]+\)$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ find_alias_for_smtplib\.py: \[common\.system:210\] Failed to send email: \{'transmission': \(553, '5\.1\.2 The recipient address <transmission> is not a valid RFC-5321 address\. [a-z0-9\.]+ - gsmtp'\)\}$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ transmission-daemon\[[0-9]+\]: .+, which was just downloaded, failed its checksum test \(torrent\.c:[0-9]+\)$
