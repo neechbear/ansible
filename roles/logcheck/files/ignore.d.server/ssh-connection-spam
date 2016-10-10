@@ -1,3 +1,4 @@
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[0-9]+\]: Timeout, client not responding\.$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[0-9]+\]: Set /proc/self/oom_score_adj to 0$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[0-9]+\]: User child is on pid [0-9]+$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[0-9]+\]: Connection from 90\.155\.50\.2[0-9{2} port [0-9]+ on [0-9\.]{7,15} port 1009$
