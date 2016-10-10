@@ -5,15 +5,16 @@
 # Try to tweak as many options in the existing global ssh_config
 # file as possible in an attempt to make the default options a
 # little more secure.
-- lineinfile: >
-    dest="/etc/ssh/ssh_config"
-    state=present
-    owner=root
-    group=root
-    mode=0444
-    regexp="^#?\s*{{ item.key }}\s+"
-    line="    {{ item.key }} {{ item.value }}"
-  with_dict: '{{ ssh_parameters }}'
+- name: "Modify parameters in /etc/ssh/ssh_config"
+  lineinfile:
+    dest: "/etc/ssh/ssh_config"
+    state: "present"
+    owner: "root"
+    group: "root"
+    mode: 0444
+    regexp: '^#?\s*{{ item.key }}\s+'
+    line: "    {{ item.key }} {{ item.value }}"
+  with_dict: "{{ ssh_parameters }}"
   when: not ssh_config is defined
 
 # Deply a standard known and trusted ssh_config file for global use
@@ -21,22 +22,24 @@
 # insecure client settings defined by default. They can still be
 # overloaded by higher precedence options in the user's local
 # ~/.ssh/config or on the ssh client command line though.
-- template: >
-    src="{{ ssh_config }}"
-    dest="/etc/ssh/ssh_config"
-    owner=root
-    group=root
-    mode=0444
+- name: "Deploy standard templated version of /etc/ssh/ssh_config"
+  template:
+    src: "{{ ssh_config }}"
+    dest: "/etc/ssh/ssh_config"
+    owner: "root"
+    group: "root"
+    mode: 0444
   when: ssh_config is defined
 
 # Deply a standard known and trusted hashed ssh_known_hosts file for
 # global use by all SSH clients on the host.
-- template: >
-    src="{{ ssh_known_hosts }}"
-    dest="/etc/ssh/ssh_known_hosts"
-    owner=root
-    group=root
-    mode=0444
+- name: "Deploy trusted /etc/ssh/ssh_known_hosts"
+  template:
+    src: "{{ ssh_known_hosts }}"
+    dest: "/etc/ssh/ssh_known_hosts"
+    owner: "root"
+    group: "root"
+    mode: 0444
 
 # http://docs.ansible.com/ansible/authorized_key_module.html
 # The authorized_keys module is a complete pile of poo. It promises
@@ -44,12 +47,13 @@
 # module does exactly what I require. I just need to build the items
 # loop list from a glob instead of a manual list though. Annoyingly
 # with_fileglob only globs files; FFS.
-- assemble:
+- name: "Deploy trusted public authorized user SSH keys"
+  assemble:
     remote_src: False
     src: "{{ item }}"
     dest: "{{ sshd_publickey_path }}/{{ item|basename }}.keys"
-    owner: root
-    group: root
+    owner: "root"
+    group: "root"
     mode: 0444
   with_items:
     - nicolaw
