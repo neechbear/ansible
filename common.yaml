@@ -76,9 +76,9 @@
     - role: 'unattended-updates'
       tags: [ 'updates', 'unattended-updates' ]
     - role: 'openssh-server'
-      tags: [ 'openssh-server' ]
+      tags: [ 'openssh', 'ssh', 'openssh-server' ]
     - role: 'openssh-client'
-      tags: [ 'openssh-client' ]
+      tags: [ 'openssh', 'ssh', 'openssh-client' ]
     - role: 'fail2ban'
       tags: [ 'fail2ban' ]
       when: not ansible_system_vendor in [ 'Google' ]
