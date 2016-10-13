@@ -40,4 +40,8 @@ sshd_parameters:
   ServerKeyBits: 4096
   ClientAliveInterval: 10
   ClientAliveCountMax: 6
+  # This will break things if there is more than one subsystem defined, but
+  # since I know there is only one (sftp), I am okay with this for the time
+  # being.
+  Subsystem: "sftp /usr/lib/openssh/sftp-server -f LOCAL5 -l INFO"
 
