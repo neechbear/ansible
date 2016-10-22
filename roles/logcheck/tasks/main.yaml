@@ -2,6 +2,10 @@
 # file: roles/logcheck/tasks/main.yaml
 # vim:ft=ansible:
 
+# Test logcheck rules easily with the logcheck-test command.
+# For example:
+#   logcheck-test -i -l ~/example.log -r roles/logcheck/files/ignore.d.server/unifi-wap
+
 - name: 'Install logcheck packages'
   apt:
     state: 'latest'
