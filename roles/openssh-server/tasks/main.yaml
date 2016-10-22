@@ -21,7 +21,7 @@
 - lineinfile:
     dest: "{{ sshd_config }}"
     state: present
-    regexp: "^AllowUsers\s+"
+    regexp: '^AllowUsers\s+'
     line: "AllowUsers {{ sshd_allowusers|join(' ') }}"
   when: not sshd_allowgroups is defined
   notify:
@@ -30,7 +30,7 @@
 - lineinfile:
     dest: "{{ sshd_config }}"
     state: present
-    regexp: "^AllowGroups\s+"
+    regexp: '^AllowGroups\s+'
     line: "AllowGroups {{ sshd_allowgroups|join(' ') }}"
   when: sshd_allowgroups is defined
   notify:
@@ -39,7 +39,7 @@
 - lineinfile:
     dest: "{{ sshd_config }}"
     state: absent
-    regexp: "^AllowGroups\s+"
+    regexp: '^AllowGroups\s+'
   when: not sshd_allowgroups is defined or sshd_allowusers is defined
   notify:
     - restart ssh
@@ -51,8 +51,8 @@
 - lineinfile:
     dest: "{{ sshd_config }}"
     state: present
-    regexp: "^(\s*HostKey\s+{{ item }}.*)$"
-    line: "#\1"
+    regexp: '^(\s*HostKey\s+{{ item }}.*)$'
+    line: '#\1'
     backrefs: yes
   notify: restart ssh
   with_items: [ "/etc/ssh/ssh_host_ecdsa_key", "/etc/ssh/ssh_host_dsa_key", "/etc/ssh/ssh_host_ed25519_key" ]
@@ -63,7 +63,7 @@
     state: present
     owner: root
     group: root
-    regexp: "^{{ item.key }}\s+"
+    regexp: '^{{ item.key }}\s+'
     line: "{{ item.key }} {{ item.value }}"
   notify: restart ssh
   with_dict: '{{ sshd_parameters }}'
@@ -83,7 +83,7 @@
     state: present
     owner: root
     group: root
-    regexp: "^Port\s+"
+    regexp: '^Port\s+'
     line: "Port {{ sshd_port|default(22) }}"
   notify: restart ssh
 
