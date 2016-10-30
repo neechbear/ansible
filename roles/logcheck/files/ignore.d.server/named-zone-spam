@@ -55,3 +55,4 @@
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: ----------------------------------------------------$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: zone [a-z0-9\.-]+/IN: loaded serial (1|20[0-9]{8})$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: zone [0-9a-z\.-]+/IN: refresh: failure trying master 104\.155\.12\.187#53 \(source 0\.0\.0\.0#0\): operation canceled$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named\[[0-9]+\]: message repeated [0-9]+ times: \[ error \(connection refused\) resolving 'kat\.cr/(A|AAAA)/IN': 62\.210\.113\.28#53\]$
