@@ -47,7 +47,7 @@
 #- name: "Enable ufw"
 #  ufw: state=enabled policy=allow
 
-- name: "Apply ufw rules"
+- name: "Apply ufw rules (with ports)"
   ufw:
     delete: "{{ item.delete|default('no') }}"
     direction: "{{ item.direction|default('in') }}"
@@ -58,6 +58,18 @@
     proto: "{{ item.proto|default('tcp') }}"
     rule: "{{ item.rule|default('allow') }}"
   when: ( ufw_rules_default is defined or ufw_rules is defined ) and ( item.port is defined or item.to_port is defined )
+  with_items: "{{ ufw_rules_default|default([])|union(ufw_rules|default([])) }}"
+
+- name: "Apply ufw rules (without ports, with source IP)"
+  ufw:
+    delete: "{{ item.delete|default('no') }}"
+    direction: "{{ item.direction|default('in') }}"
+    from_ip: "{{ item.from_ip }}"
+    to_ip: "{{ item.to_ip|default('any') }}"
+    log: "{{ item.log|default('no') }}"
+    proto: "{{ item.proto|default('tcp') }}"
+    rule: "{{ item.rule|default('allow') }}"
+  when: ( ufw_rules_default is defined or ufw_rules is defined ) and not ( item.port is defined or item.to_port is defined ) and item.from_ip is defined
   with_items: "{{ ufw_rules_default|default([])|union(ufw_rules|default([])) }}"
 
 - name: "Apply ufw policies"
