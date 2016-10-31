@@ -7,7 +7,8 @@ agent_server: 90.155.50.213,10.1.4.213,2001:8b0:84c:717d:90:155:50:213,127.0.0.1
 agent_serveractive: 90.155.50.213
 
 # Zabbix API stuff
-zabbix_api_use: True
+# DO NOT RUN API MODULES UNTIL LIBRARIES ARE FIXED
+zabbix_api_use: False
 zabbix_url: "https://bran.mlt.tfb.net/zabbix"
 zabbix_api_user: zabbix_api_user
 #zabbix_api_pass: examplepassword
