@@ -6,13 +6,15 @@ ufw_rules: []
 
 ufw_rules_default:
   - { port: 1009 } # SSH
-  - { port: 5099,  from_ip: '81.187.194.123/32' } # Ansible acceleration
-  - { port: 5099,  from_ip: '90.155.50.208/28'  } # Ansible acceleration
-  - { port: 5099,  from_ip: '10.1.4.0/24'       } # Ansible acceleration
-  - { port: 5099,  from_ip: '2001:8b0:84c:717d::/64' } # Ansible acceleration
+  #- { port: 5099,  from_ip: '81.187.194.123/32' } # Ansible acceleration
+  #- { port: 5099,  from_ip: '90.155.50.208/28'  } # Ansible acceleration
+  #- { port: 5099,  from_ip: '10.1.4.0/24'       } # Ansible acceleration
+  #- { port: 5099,  from_ip: '2001:8b0:84c:717d::/64' } # Ansible acceleration
   - { port: 10050, from_ip: '90.155.50.213/32'  } # Zabbix agent
   - { port: 10050, from_ip: '10.1.4.213/32'     } # Zabbix agent
   - { port: 10050, from_ip: '2001:8b0:84c:717d:90:155:50:213' } # Zabbix agent
+  - { from_ip: '85.159.232.0/21', rule: 'deny' } # NForce Entertainment B.V.
+  - { from_ip: '154.16.199.0/24', rule: 'deny' } # TrionInfra Dedicated Server Solutions
 
 #ufw_policy:
 #  - { state: 'enabled', direction: 'incoming', policy: 'reject' } # Enable default reject on incoming traffic
