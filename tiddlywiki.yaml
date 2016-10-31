@@ -2,7 +2,7 @@
 # file: tiddywiki.yaml
 # vim:ft=ansible:
 
-- name: tw5
+- name: tw5.mlt
   hosts: bran.mlt
   tags: [ 'tw5' ]
   roles:
@@ -31,4 +31,40 @@
         - "{{ ansible_env.SUDO_USER }}:$2y$05$8IbqbYjSwrvPNou0djg7Auf3csweLliDTYzp0h9k3AvebG4LhZKd6"
       tw5_cert_filename: "/etc/ssl/certs/tw5.mlt.tfb.net.crt"
       tw5_key_filename: "/etc/ssl/private/tw5.mlt.tfb.net.key"
+
+# TODO(2016-07-29): Add bets-pe here; import existing configuration.
+#                   Enabling this play as it stands will destroy the existing
+#                   live running TiddlyWiki service. Fix this first!
+#- name: tw5.bets
+#  hosts: bets-pe.gce
+#  tags: [ 'tw5', 'bets' ]
+#  roles:
+#    - role: x509cert
+#      cert_cn: "{{ bets_fqdn }}"
+#      cert_filename: "/etc/ssl/certs/{{ bets_fqdn }}.crt"
+#      key_filename: "/etc/ssl/private/{{ bets_fqdn }}.key"
+#    - role: tiddlywiki
+#      tw5_wiki_name: "{{ bets_fqdn }}"
+#      tw5_virtual_host: "{{ bets_fqdn }}"
+#      tw5_user: "{{ bets_username }}"
+#      tw5_serveradmin: "{{ bets_username }}"
+#      tw5_crypts:
+#        - "{{ bets_username }}:$2y$05$8IbqbYjSwrvPNou0djg7Auf3csweLliDTYzp0h9k3AvebG4LhZKd6"
+#      tw5_cert_filename: "/etc/ssl/certs/{{ bets_fqdn }}.crt"
+#      tw5_key_filename: "/etc/ssl/private/{{ bets_fqdn }}.key"
+
+# TODO(2016-07-29): Add nicolaw.uk here; import existing configuration.
+#                   Enabling this play as it stands will destroy the existing
+#                   live running TiddlyWiki service. Fix this first!
+#- name: tw5.nicolaw
+#  hosts: jorah.gce
+#  tags: [ 'tw5', 'nicolaw.uk' ]
+#  roles:
+#    - role: tiddlywiki
+#      tw5_wiki_name: "nicolaw.uk"
+#      tw5_virtual_host: "nicolaw.uk"
+#      tw5_crypts:
+#        - "{{ ansible_env.SUDO_USER }}:$2y$05$8IbqbYjSwrvPNou0djg7Auf3csweLliDTYzp0h9k3AvebG4LhZKd6"
+#      tw5_cert_filename: "/etc/ssl/certs/nicolaw.uk.crt"
+#      tw5_key_filename: "/etc/ssl/private/nicolaw.uk.key"
 
