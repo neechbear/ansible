@@ -35,8 +35,9 @@
       tags: [ 'scripts' ]
     - role: 'temper-usb'
       tags: [ 'temper-usb', 'monitoring' ]
-    - role: 'zabbix-agent'
-      tags: [ 'zabbix', 'zabbix-agent', 'monitoring' ]
+    # Temporarily disabled (broken).
+    #- role: 'zabbix-agent'
+    #  tags: [ 'zabbix', 'zabbix-agent', 'monitoring' ]
 
 - name: harden
   hosts: tfb
