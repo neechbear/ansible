@@ -1,4 +1,4 @@
-^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ \("[ ,\.[:alnum:]]+"\) syslog: ace_reporter\.reporter_fail\(\): Unreachable \(http://(unifi|10\.1\.4\.[0-9]{3}):8080/inform\)$
+DISABLED DISABLED DISABLED ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ \("[ ,\.[:alnum:]]+"\) syslog: ace_reporter\.reporter_fail\(\): Unreachable \(http://(unifi|10\.1\.4\.[0-9]{3}):8080/inform\)$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ \("[ ,\.[:alnum:]]+"\) syslog: ace_reporter\.reporter_fail\(\): Unable to resolve \(http://unifi:8080/inform\)$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ \("[ ,\.[:alnum:]]+"\) syslog: ace_reporter\.reporter_fail\(\): initial contact failed #[0-9]+, url=http://(unifi|10\.1\.4\.[0-9]{3}):8080/inform, rc=[13]$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ \("[ ,\.[:alnum:]]+"\) syslog: ace_reporter\.reporter_next_inform_url\(\): next inform url\[[0-9]+\]=http://(unifi|10\.1\.4\.[0-9]{3}):8080/inform$
@@ -7,4 +7,4 @@
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ \("[ ,\.[:alnum:]]+"\) hostapd: ath[01]: STA [a-f0-9:]+ RADIUS: starting accounting session [A-F0-9-]+$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ \("[ ,\.[:alnum:]]+"\) hostapd: ath[01]: STA [a-f0-9:]+ IEEE 802.11: (associated|sta_stats|disassociated)$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ \("[ ,\.[:alnum:]]+"\) hostapd: ath[01]: STA [a-f0-9:]+ WPA: pairwise key handshake completed \(RSN\)$
-^[[:alpha:]]{3} [ :[:digit:]]{11} wap[123]\.mlt\.[._[:alnum:]-]+ \("[ ,\.[:alnum:]]+"\) (syslog|crond|crond\[[0-9]+\]|kernel|hostapd): .*
+^[[:alpha:]]{3} [ :[:digit:]]{11} (wap[123]\.mlt\.[._[:alnum:]-]+|10\.1\.4\.[345]) \("[ ,\.[:alnum:]]+"\) (syslog|crond|crond\[[0-9]+\]|kernel|hostapd): .*
