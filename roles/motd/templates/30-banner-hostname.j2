@@ -12,7 +12,7 @@ function centre() {
 }
 {% endraw %}
 
-echo -e '[0;1;33;93m'
+echo -ne '[0;1;33;93m'
 {% if ansible_system_vendor == "Google" or "gay" in motd_banner_filter|default('') %}
 toilet -w 79 -f "$font" \
 	-F gay -F crop \
@@ -26,5 +26,5 @@ figlet -w 79 -f "$font" \
 	-c \
 	"{% if motd_banner is defined %}{{ motd_banner }}{% else %}$(hostname -s){% endif %}" | sed -e '/^\s*$/d'
 {% endif %}
-echo -e '[0m'
+echo -ne '[0m'
 
