@@ -1,10 +1,10 @@
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /usr/sbin/cron\[[0-9]+\]: \(root\) CMD \(periodic (daily|weekly)\)$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /usr/sbin/cron\[[0-9]+\]: \(root\) CMD \(find /tmp/ -i?name "sessionid\*" -ctime \+1d -delete >/dev/null 2>&1\)$
-^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /usr/sbin/cron\[[0-9]+\]: \(root\) CMD \(/bin/sh /usr/local/bin/telemetry-cron\.sh >/dev/null 2>&1\)$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /usr/sbin/cron\[[0-9]+\]: \(root\) CMD \(/bin/sh /usr/local/bin/telemetry-cron\.sh > /dev/null 2>&1\)$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /usr/sbin/cron\[[0-9]+\]: \(root\) CMD \(/usr/local/bin/python /usr/local/www/freenasUI/tools/cachetool\.py expire >/dev/null 2>&1\)$
-^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /usr/sbin/cron\[[0-9]+\]: \(root\) CMD \(^I/usr/local/bin/python /usr/local/www/freenasUI/tools/cachetool\.py fill >/dev/null 2>&1\)$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /usr/sbin/cron\[[0-9]+\]: \(root\) CMD \(\^I/usr/local/bin/python /usr/local/www/freenasUI/tools/cachetool\.py fill >/dev/null 2>&1\)$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /usr/sbin/cron\[[0-9]+\]: \(root\) CMD \(/usr/local/bin/python /usr/local/www/freenasUI/middleware/notifier\.py backup_db >/dev/null 2>&1\)$
-^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /usr/sbin/cron\[[0-9]+\]: \(root\) CMD \(/usr/local/libexec/nas/scrub -t 35 (archive|pool[12]|jails|freenas-boot)$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /usr/sbin/cron\[[0-9]+\]: \(root\) CMD \(/usr/local/libexec/nas/scrub -t 35 (archive|pool[12]|jails|freenas-boot)\)$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ autorepl\.py: \[tools\.autorepl:[0-9]+\] pool[1] -> 127\.0\.0\.1:archive/pool[1]-backup replication not enabled$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ cachetool\.py: \[common\.freenasusers:[0-9]+\] FreeNAS_Users.__init__: .*$
 ^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ cachetool\.py: \[common\.freenasusers:[0-9]+\] FreeNAS_User.__new__: .*$
