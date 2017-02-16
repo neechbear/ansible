@@ -45,15 +45,17 @@
            url=http://repo.zabbix.com/zabbix-official-repo.key
   when: zabbix_repo == True
 
-- name: "Debian | Force apt-cache update"
-  apt: update_cache=yes
-  when: zabbix_repo
+#- name: "Debian | Force apt-cache update"
+#  apt:
+#    update_cache: yes
+#  when: zabbix_repo
 
 - name: "Debian | Installing zabbix-agent"
-  apt: pkg=zabbix-agent
-       state=present 
-       update_cache=yes
-       cache_valid_time=3600
+  apt:
+    pkg: "zabbix-agent"
+    state: "present"
+    update_cache: "yes"
+    cache_valid_time: 3600
 
 - name: "Debian | Enable the service"
   service: name={{ zabbix_agent }}

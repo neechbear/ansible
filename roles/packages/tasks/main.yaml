@@ -18,6 +18,7 @@
     - debsums
     - xml2
     - curl
+    - rsync
 
 - apt:
     pkg: "{{ item }}"

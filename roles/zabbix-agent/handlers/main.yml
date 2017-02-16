@@ -1,7 +1,13 @@
 ---
 # handlers file for zabbix-agent
 
-- name: "{{ zabbix_agent }} restarted"
-  service: name={{ zabbix_agent }}
-           state=restarted
+#- name: "{{ zabbix_agent }} restarted"
+#  service:
+#    name: "{{ zabbix_agent }}"
+#    state: "restarted"
+
+- name: "zabbix-agent restarted"
+  service:
+    name: "{{ zabbix_agent }}"
+    state: "restarted"
 

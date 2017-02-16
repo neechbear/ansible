@@ -12,12 +12,6 @@
     - group_by: key=machine_{{ ansible_machine }}
     - group_by: key=virt_{{ ansible_virtualization_type }}_{{ ansible_virtualization_role }}
 
-- name: motd
-  hosts: os_Debian
-  gather_facts: False
-  roles:
-    - motd
-
 - name: common
   hosts: tfb
   tags: [ 'common' ]
@@ -36,8 +30,14 @@
     - role: 'temper-usb'
       tags: [ 'temper-usb', 'monitoring' ]
     # Temporarily disabled (broken).
-    #- role: 'zabbix-agent'
-    #  tags: [ 'zabbix', 'zabbix-agent', 'monitoring' ]
+    - role: 'zabbix-agent'
+      tags: [ 'zabbix', 'zabbix-agent', 'monitoring' ]
+
+- name: motd
+  hosts: os_Debian
+  gather_facts: False
+  roles:
+    - motd
 
 - name: harden
   hosts: tfb

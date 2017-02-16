@@ -2,6 +2,25 @@
 # file: tiddywiki.yaml
 # vim:ft=ansible:
 
+- name: neech-me-uk
+  hosts: neech-me-uk.gce
+  tags: [ 'tw5', 'wotlk', 'wow', 'neech.me.uk' ]
+  vars:
+    tw5_fqdn: "neech.me.uk"
+  roles:
+    - role: x509cert
+      cert_cn: "{{ tw5_fqdn }}"
+      cert_filename: "/etc/ssl/certs/{{ tw5_fqdn }}.crt"
+      key_filename: "/etc/ssl/private/{{ tw5_fqdn }}.key"
+    - role: tiddlywiki
+      tw5_exclusive_vhost: "yes"
+      tw5_wiki_name: "{{ tw5_fqdn }}"
+      tw5_virtual_host: "{{ tw5_fqdn }}"
+      tw5_crypts:
+        - "{{ wotlk_username }}:{{ wotlk_password }}"
+      tw5_cert_filename: "/etc/ssl/certs/{{ tw5_fqdn }}.crt"
+      tw5_key_filename: "/etc/ssl/private/{{ tw5_fqdn }}.key"
+
 - name: tw5.mlt
   hosts: bran.mlt
   tags: [ 'tw5' ]
@@ -28,7 +47,7 @@
       tw5_wiki_name: "tw5.mlt.tfb.net"
       tw5_virtual_host: "tw5.mlt.tfb.net"
       tw5_crypts:
-        - "{{ ansible_env.SUDO_USER }}:$2y$05$8IbqbYjSwrvPNou0djg7Auf3csweLliDTYzp0h9k3AvebG4LhZKd6"
+        - "{{ ansible_env.SUDO_USER }}:{{ tw5_password_hash }}"
       tw5_cert_filename: "/etc/ssl/certs/tw5.mlt.tfb.net.crt"
       tw5_key_filename: "/etc/ssl/private/tw5.mlt.tfb.net.key"
 
@@ -49,7 +68,7 @@
 #      tw5_user: "{{ bets_username }}"
 #      tw5_serveradmin: "{{ bets_username }}"
 #      tw5_crypts:
-#        - "{{ bets_username }}:$2y$05$8IbqbYjSwrvPNou0djg7Auf3csweLliDTYzp0h9k3AvebG4LhZKd6"
+#        - "{{ ansible_env.SUDO_USER }}:{{ tw5_password_hash }}"
 #      tw5_cert_filename: "/etc/ssl/certs/{{ bets_fqdn }}.crt"
 #      tw5_key_filename: "/etc/ssl/private/{{ bets_fqdn }}.key"
 
@@ -58,13 +77,13 @@
 #                   live running TiddlyWiki service. Fix this first!
 #- name: tw5.nicolaw
 #  hosts: jorah.gce
-#  tags: [ 'tw5', 'nicolaw.uk' ]
+#  tags: [ 'tw5', 'nicolaw.uk', 'homepage' ]
 #  roles:
 #    - role: tiddlywiki
 #      tw5_wiki_name: "nicolaw.uk"
 #      tw5_virtual_host: "nicolaw.uk"
 #      tw5_crypts:
-#        - "{{ ansible_env.SUDO_USER }}:$2y$05$8IbqbYjSwrvPNou0djg7Auf3csweLliDTYzp0h9k3AvebG4LhZKd6"
+#        - "{{ ansible_env.SUDO_USER }}:{{ tw5_password_hash }}"
 #      tw5_cert_filename: "/etc/ssl/certs/nicolaw.uk.crt"
 #      tw5_key_filename: "/etc/ssl/private/nicolaw.uk.key"
 

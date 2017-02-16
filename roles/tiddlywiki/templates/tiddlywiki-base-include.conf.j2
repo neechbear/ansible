@@ -1,0 +1,12 @@
+        ServerAdmin {{ tw5_serveradmin|default(ansible_env.SUDO_USER ~ '@' ~ ansible_fqdn) }}
+        ServerName {{ tw5_virtual_host|default(ansible_fqdn) }}
+        ServerAlias www.{{ tw5_virtual_host|default(ansible_fqdn) }}
+        DocumentRoot /var/www
+        UseCanonicalName On
+
+        Options -Indexes +FollowSymLinks -MultiViews
+        CheckSpelling On
+        Header merge Cache-Control no-cache
+        RewriteEngine On
+
+        Alias /static.css /static/static.css

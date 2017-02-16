@@ -1,50 +1,66 @@
-<IfModule mod_ssl.c>
-    <VirtualHost {{ tw5_virtual_host|default('_default_') }}:443>
-        ServerAdmin {{ tw5_serveradmin|default(ansible_env.SUDO_USER ~ '@' ~ ansible_fqdn) }}
-        ServerName {{ tw5_virtual_host|default(ansible_fqdn) }}
-        DocumentRoot /var/www/html
+
+<IfModule !mod_ssl.c>
+    <VirtualHost {{ tw5_exclusive_vhost|default(False)|bool|ternary('_default_',tw5_virtual_host|default('_default_')) }}:443>
+        Include sites-available/tiddlywiki-base-include-{{ tw5_virtual_host|default(tw5_wiki_name) }}.conf
 
         ErrorLog ${APACHE_LOG_DIR}/{{ tw5_virtual_host|default(tw5_wiki_name) }}-error.log
         CustomLog ${APACHE_LOG_DIR}/{{ tw5_virtual_host|default(tw5_wiki_name) }}-access.log combined
 
-        SSLEngine on
-        SSLCertificateFile {{ tw5_cert_filename|default('/etc/ssl/certs/' ~ ansible_fqdn ~ '.crt') }} 
-        SSLCertificateKeyFile {{ tw5_key_filename|default('/etc/ssl/private/' ~ ansible_fqdn ~ '.key') }}
-
-        BrowserMatch "MSIE [2-6]" \
-          nokeepalive ssl-unclean-shutdown \
-          downgrade-1.0 force-response-1.0
-        BrowserMatch "MSIE [17-9]" ssl-unclean-shutdown
-
-        RewriteEngine On
-        RewriteCond %{LA-U:REMOTE_USER} !^{{ tw5_user }}$
         RewriteCond %{REQUEST_METHOD} !^(GET|HEAD)
         RewriteRule .* - [R=405,L]
 
-        Header merge Cache-Control no-cache
+        Include sites-available/tiddlywiki-proxy-include-{{ tw5_virtual_host|default(tw5_wiki_name) }}.conf
+    </VirtualHost>
+</IfModule>
+
+<IfModule mod_ssl.c>
+    <VirtualHost {{ tw5_exclusive_vhost|default(False)|bool|ternary('_default_',tw5_virtual_host|default('_default_')) }}:80>
+        ServerName {{ tw5_virtual_host|default(ansible_fqdn) }}
+        ServerAlias www.{{ tw5_virtual_host|default(ansible_fqdn) }}
+        Redirect / https://{{ tw5_virtual_host|default(ansible_fqdn) }}
+    </VirtualHost>
+
+    <VirtualHost {{ tw5_exclusive_vhost|default(False)|bool|ternary('_default_',tw5_virtual_host|default('_default_')) }}:443>
+        Include sites-available/tiddlywiki-base-include-{{ tw5_virtual_host|default(tw5_wiki_name) }}.conf
+
+        ErrorLog ${APACHE_LOG_DIR}/{{ tw5_virtual_host|default(tw5_wiki_name) }}-error.log
+        CustomLog ${APACHE_LOG_DIR}/{{ tw5_virtual_host|default(tw5_wiki_name) }}-access.log combined
+
+        RewriteCond %{REQUEST_METHOD} !^(GET|HEAD)
+        RewriteRule .* - [R=405,L]
+
+        Include sites-available/tiddlywiki-ssl-include-{{ tw5_virtual_host|default(tw5_wiki_name) }}.conf
+
+        RewriteCond %{HTTP_HOST} !^{{ tw5_virtual_host|default(tw5_wiki_name) }}$ [NC]
+        RewriteCond %{HTTP_HOST} !^$
+        RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [L,R=301,NE]
+        RewriteRule ^/static/?$ https://%{SERVER_NAME}/static/Hello.html [L,R=301,NE]
+
+        Include sites-available/tiddlywiki-proxy-include-{{ tw5_virtual_host|default(tw5_wiki_name) }}.conf
+    </VirtualHost>
+
+    <VirtualHost {{ tw5_exclusive_vhost|default(False)|bool|ternary('_default_',tw5_virtual_host|default('_default_')) }}:444>
+        Include sites-available/tiddlywiki-base-include-{{ tw5_virtual_host|default(tw5_wiki_name) }}.conf
+
+        ErrorLog ${APACHE_LOG_DIR}/{{ tw5_virtual_host|default(tw5_wiki_name) }}-RW-error.log
+        CustomLog ${APACHE_LOG_DIR}/{{ tw5_virtual_host|default(tw5_wiki_name) }}-RW-access.log combined
 
         <Location />
             AuthType basic
-            # AuthName "Use 'guest' & email address for guest entry"
-            AuthName "TiddlyWiki"
-            # AuthBasicProvider file anon
+            AuthName "{{ tw5_wiki_name }}"
             AuthBasicProvider file
             AuthUserFile {{ tw5_passwd_file }}
-            # Anonymous_NoUserID on
-            # Anonymous_MustGiveEmail off
-            # Anonymous_VerifyEmail off
-            # Anonymous_LogEmail on
-            # Anonymous anonymous anon guest www test welcome
-            Require valid-user
+            Require user {{ tw5_user }}
         </Location>
 
-        <Proxy *>
-            Order Deny,Allow
-            Allow from all
-        </Proxy>
-        ProxyPreserveHost Off
-        ProxyPass / http://127.0.0.1:8080/
-        AllowEncodedSlashes on
+        Include sites-available/tiddlywiki-ssl-include-{{ tw5_virtual_host|default(tw5_wiki_name) }}.conf
+
+        RewriteCond %{HTTP_HOST} !^{{ tw5_virtual_host|default(tw5_wiki_name) }}:444$ [NC]
+        RewriteCond %{HTTP_HOST} !^$
+        RewriteRule ^/?(.*) https://%{SERVER_NAME}:444/$1 [L,R=301,NE]
+        RewriteRule ^/static/?$ https://%{SERVER_NAME}:444/static/Hello.html [L,R=301,NE]
+
+        Include sites-available/tiddlywiki-proxy-include-{{ tw5_virtual_host|default(tw5_wiki_name) }}.conf
     </VirtualHost>
 </IfModule>
 

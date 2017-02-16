@@ -63,7 +63,7 @@ main() {
     declare -A host_groups=(
         [mlt]="bran.mlt sansa.mlt brienne.mlt pdu1.mlt smsgw1.mlt"
         [rbsov]="tyrion.rbsov theon.rbsov"
-        [gce]="jorah.gce root-me.gce bets-pe.gce ns1.gce"
+        [gce]="jorah.gce root-me.gce bets-pe.gce ns1.gce neech-me-uk.gce"
         )
 
     for group in "${!host_groups[@]}" ; do
@@ -104,8 +104,8 @@ main() {
     done
 
     mv -v ssh_known_hosts.*.j2 roles/openssh-client/templates/ \
-        && ~/ansible/play --tag openssh-client -l bran.mlt \
-        && ~/ansible/play --tag openssh-client
+        && ~/src/ansible/play --tag openssh-client -l bran.mlt \
+        && ~/src/ansible/play --tag openssh-client
 }
 
 ssh-add -l >/dev/null 2>&1 || ssh-add

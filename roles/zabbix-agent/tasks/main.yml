@@ -1,5 +1,9 @@
 ---
 
+- name: "Include overloaded variables"
+  include_vars: "ubuntu-xenial.yaml"
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial'
+
 - name: "Install the correct repository"
   include: "RedHat.yml"
   when: ansible_os_family == "RedHat"

@@ -1,0 +1,32 @@
+        SSLEngine on
+        SSLCertificateFile {{ tw5_cert_filename|default('/etc/ssl/certs/' ~ tw5_virtual_host|default(ansible_fqdn) ~ '.crt') }} 
+        SSLCertificateKeyFile {{ tw5_key_filename|default('/etc/ssl/private/' ~ tw5_virtual_host|default(ansible_fqdn) ~ '.key') }}
+        SSLCertificateChainFile {{ tw5_certchain_filename|default('/etc/ssl/certs/' ~ tw5_virtual_host|default(ansible_fqdn) ~ '.ca-bundle') }}
+        #SSLOpenSSLConfCmd DHParameters "/etc/ssl/dhparams.pem"
+
+        #SSLCipherSuite AES128+EECDH:AES128+EDH
+        #SSLProtocol All -SSLv2 -SSLv3
+        #SSLHonorCipherOrder On
+
+        # https://weakdh.org/sysadmin.html
+        # https://www.ssllabs.com/ssltest/analyze.html?d={{ tw5_virtual_host|default(ansible_fqdn) }}
+        # http://serverfault.com/questions/693241/how-to-fix-logjam-vulnerability-in-apache-httpd
+        # https://o-o-s.de/debian-wheezy-apache-logjam/10492
+        # https://httpd.apache.org/docs/current/ssl/ssl_faq.html
+        SSLProtocol All -SSLv2 -SSLv3
+        SSLCipherSuite ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-DSS-AES128-SHA256:DHE-DSS-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA:!DHE-RSA-AES128-GCM-SHA256:!DHE-RSA-AES256-GCM-SHA384:!DHE-RSA-AES128-SHA256:!DHE-RSA-AES256-SHA:!DHE-RSA-AES128-SHA:!DHE-RSA-AES256-SHA256:!DHE-RSA-CAMELLIA128-SHA:!DHE-RSA-CAMELLIA256-SHA
+        SSLHonorCipherOrder On
+
+        Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" env=HTTPS
+        Header always set X-Frame-Options SAMEORIGIN
+        Header always set X-Content-Type-Options nosniff
+
+        # Requires Apache >= 2.4
+        #SSLCompression off
+        #SSLUseStapling on
+        #SSLStaplingCache "shmcb:logs/stapling-cache(150000)"
+
+        BrowserMatch "MSIE [2-6]" \
+          nokeepalive ssl-unclean-shutdown \
+          downgrade-1.0 force-response-1.0
+        BrowserMatch "MSIE [17-9]" ssl-unclean-shutdown

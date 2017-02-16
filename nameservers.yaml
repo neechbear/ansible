@@ -76,18 +76,18 @@
   roles:
     - role: network-interface
       network_ether_interfaces:
-        - device: 'em1:222'
+        - device: 'eno1:222'
           bootproto: 'static'
           address: '90.155.50.222'
           netmask: '255.255.255.240'
           gateway: '90.155.50.209'
-        - device: 'em1:222v6'
+        - device: 'eno1:222v6'
           netproto: 'inet6'
           bootproto: 'static'
           address: '2001:8b0:84c:717d:90:155:50:222'
           netmask: '64'
           gateway: '2001:8b0:84c:717d::1'
-        - device: 'em1:1918b'
+        - device: 'eno1:1918b'
           bootproto: 'static'
           address: '10.1.4.222'
           netmask: '255.255.255.0'

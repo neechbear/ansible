@@ -1,11 +1,11 @@
 #!/bin/bash
 
 if ! grep -wq -- "--test-only" <<< "$@" ; then
-	play ~/ansible/nameservers.yaml --tags nameserver-role --skip-tags firewall
+	play ~/src/ansible/nameservers.yaml --tags nameserver-role --skip-tags firewall
 	sleep 3
 fi
 
-for zone in $( find ~/ansible/roles/nameserver/files/zones/ -name 'db.*' -printf '%f\n' | sed 's/^db\.//' | sort -u )
+for zone in $( find ~/src/ansible/roles/nameserver/files/zones/ -name 'db.*' -printf '%f\n' | sed 's/^db\.//' | sort -u )
 do
 	SOA="$( dig +short -t NS $zone | sort -u | xargs -I{} dig +short -t SOA $zone @{} )"
 	if [ "$(uniq <<< "$SOA" | wc -l)" -gt 1 ]

@@ -2,14 +2,18 @@
 # file: roles/tiddlywiki/tasks/main.yaml
 # vim:ft=ansible:
 
-- set_fact:
+- name: "Set some facts"
+  set_fact:
     tw5_wiki_name: "{{ tw5_wiki_name|default('mywiki') }}"
     tw5_base_path: "{{ tw5_base_path|default('/home/' ~ ansible_env.SUDO_USER) }}"
     tw5_wiki_path: "{{ tw5_base_path|default('/home/' ~ ansible_env.SUDO_USER) ~ '/' ~ tw5_wiki_name|default('mywiki') }}"
     tw5_passwd_file: "{{ tw5_passwd_file|default('/etc/apache2/tiddlywiki' ~ tw5_wiki_name|default('mywiki') ~ '.htpasswd') }}"
     tw5_user: "{{ tw5_user|default(ansible_env.SUDO_USER) }}"
+    tw5_address: "{{ tw5_address|default('127.0.0.1') }}"
+    tw5_port: "{{ tw5_port|default('8080') }}"
 
-- apt:
+- name: "Install packages"
+  apt:
     state: "latest"
     name: "{{ item }}"
   with_items:
@@ -25,20 +29,26 @@
 #  args:
 #    creates: "/usr/local/bin/tiddlywiki"
 
-- npm: >
-    name=tiddlywiki
-    global=yes
-    state=present
-    production=yes
+- name: "Install tiddlywiki NPM package"
+  npm:
+    name: "tiddlywiki"
+    global: "yes"
+    state: "present"
+    production: "yes"
 
 - name: "Install Apache site configuration file"
   template:
-    src: "tiddlywiki.conf.j2"
-    dest: "/etc/apache2/sites-available/tiddlywiki-{{ tw5_wiki_name }}.conf"
+    src: "{{ item }}.conf.j2"
+    dest: "/etc/apache2/sites-available/{{ item }}-{{ tw5_wiki_name }}.conf"
     owner: "root"
     group: "www-data"
     mode: "0640"
-  notify: restart apache2
+  notify: "restart apache2"
+  with_items:
+    - "tiddlywiki"
+    - "tiddlywiki-base-include"
+    - "tiddlywiki-ssl-include"
+    - "tiddlywiki-proxy-include"
 
 - name: "Add username and password to Apache htpasswd file"
   command: >
@@ -62,16 +72,25 @@
   with_items: '{{ tw5_crypts }}'
   when: tw5_crypts is defined
 
-#- command: >
-#    a2dissite *
-#  args:
-#    chdir: "/etc/apache2/sites-enabled"
+- name: "Discover enabled Apache virtual hosts"
+  find:
+    paths: "/etc/apache2/sites-enabled"
+    patterns: '(?!tiddlywiki-{{ tw5_wiki_name }}.conf)'
+    use_regex: true
+  register: other_apache_vhosts
 
-#- name: "Check for existing Apache site configuration file"
-#  command: test -e "/etc/apache/sites-enabled/tiddlywiki-{{ tw5_wiki_name }}.conf"
-#  register: apache_site_config_file
-#  changed_when: false
-#  failed_when: false
+- name: "Disable all Apache virtual hosts"
+  command: >
+    a2dissite *
+  args:
+    chdir: "/etc/apache2/sites-enabled"
+  when: tw5_exclusive_vhost|default(False)|bool and other_apache_vhosts.matched >= 1
+
+- name: "Check for existing Apache site configuration file"
+  command: test -e "/etc/apache/sites-enabled/tiddlywiki-{{ tw5_wiki_name }}.conf"
+  register: apache_site_config_file
+  changed_when: false
+  failed_when: false
 
 - name: "Enable Apache site configuration file"
   command: a2ensite tiddlywiki-{{ tw5_wiki_name }}.conf
@@ -86,9 +105,10 @@
     - ssl
     - rewrite
     - headers
+    - speling
     - proxy
     - proxy_http
-  notify: restart apache2
+  notify: "restart apache2"
 
 - name: "Initialise TiddlyWiki server"
   command: >
@@ -97,7 +117,7 @@
     chdir: "{{ tw5_base_path }}"
     creates: "{{ tw5_wiki_path }}"
   become: no
-  notify: restart apache2
+  notify: "restart apache2"
 
 - name: "Check if NodeJS server is already running"
   command: >
@@ -106,8 +126,23 @@
   changed_when: false
   failed_when: nodejs_pid.stderr|length|bool
 
-- debug:
-    var: nodejs_pid
+- name: "Install systemd service"
+  template:
+    src: "tiddlywiki.service.j2"
+    dest: "/etc/systemd/system/tiddlywiki-{{ tw5_wiki_name }}.service"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  when: ansible_service_mgr == "systemd"
+  register: tiddlywiki_systemd_service
+
+- name: "Enable systemd service"
+  systemd:
+    name: "tiddlywiki-{{ tw5_wiki_name }}"
+    daemon_reload: "yes"
+    enabled: "yes"
+    state: "restarted"
+  when: tiddlywiki_systemd_service.changed
 
 # Find out how to run the nodejs tiddlywiki server process as a background
 # daemon, instead of running it inside of a GNU Screen session.
@@ -121,6 +156,20 @@
   args:
     chdir: "{{ tw5_base_path }}"
   become: no
-  when: not nodejs_pid.stdout|length|bool
+  when: not nodejs_pid.stdout|length|bool and not ansible_service_mgr == "systemd" and not ansible_service_mgr == "upstart"
 
+- name: "Install static.css"
+  template:
+    src: "static.css.j2"
+    dest: "/var/www/s/static.css"
+    owner: "root"
+    group: "www-data"
+    mode: "0644"
+
+- name: "Install generate-static-tiddlers.sh"
+  template:
+    src: "generate-static-tiddlers.sh.j2"
+    dest: "{{ tw5_wiki_path }}/generate-static-tiddlers.sh"
+    owner: "{{ tw5_user }}"
+    mode: "0700"
 
