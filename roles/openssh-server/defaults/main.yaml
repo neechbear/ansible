@@ -18,7 +18,7 @@ sshd_parameters:
   DebianBanner: "no"
   UseDNS: "no"
   UsePrivilegeSeparation: "sandbox"
-  KexAlgorithms: "diffie-hellman-group-exchange-sha256"
+  KexAlgorithms: "diffie-hellman-group-exchange-sha256,ecdh-sha2-nistp521"
   MACs: "hmac-sha2-512,hmac-sha2-256"
   Ciphers: "aes256-ctr,aes192-ctr,aes128-ctr"
   Protocol: 2
